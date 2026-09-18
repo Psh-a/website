@@ -387,6 +387,8 @@ a { color: inherit; text-decoration: none; }
 
 .sub-item + .sub-item { border-top: 1px solid #dfe5ee; }
 
+.sub-item.is-clickable { cursor: pointer; }
+
 .sub-item:first-child .sub-media { order: -1; }
 
 .sub-media {

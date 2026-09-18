@@ -95,6 +95,7 @@
 .license-note { margin-top: 6px; }
 
 @media (max-width: 860px) {
-  .video-stack { gap: 26px; }
-  .video-item figcaption b { font-size: 17px; }
+  .video-stack { gap: 24px; }
+  .video-item { padding: 18px 18px 22px; }
+  .video-head b { font-size: 18px; }
 }

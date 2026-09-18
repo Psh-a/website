@@ -38,6 +38,8 @@
       rail.classList.toggle("on-dark", onDark);
     });
 
+    if (!sections.length) return;
+
     let current = 0;
     sections.forEach(function (section, i) {
       const r = section.getBoundingClientRect();
