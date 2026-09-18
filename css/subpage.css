@@ -4,7 +4,7 @@
 .video-block { margin: 14px 0 30px; }
 
 .block-title {
-  font-size: 26px;
+  font-size: 27px;
   font-weight: 800;
   color: var(--navy-deep);
   margin: 0 0 20px;
@@ -33,13 +33,13 @@
 
 .video-head b {
   display: block;
-  font-size: 23px;
+  font-size: 24px;
   line-height: 1.35;
   color: var(--navy-deep);
 }
 
 .video-head p {
-  font-size: 16.5px;
+  font-size: 17.5px;
   color: var(--muted);
   margin-top: 4px;
 }
@@ -82,9 +82,20 @@
 
 .license-note { margin-top: 6px; }
 
+/* 执照区：改为上下排列，文字在上、图片在下（占满整行） */
+.sec.sec-stack {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 26px;
+}
+
+.sec.sec-stack .sec-body { order: 1; }
+.sec.sec-stack .sec-media { order: 2; }
+.sec.sec-stack .sec-media.fit-wide { justify-self: stretch; width: 100%; }
+.sec.sec-stack .prose { max-width: 1040px; }
+
 @media (max-width: 860px) {
   .video-stack { gap: 24px; }
   .video-item { padding: 18px 18px 22px; }
-  .video-head b { font-size: 19px; }
-  .video-head p { font-size: 15px; }
+  .video-head b { font-size: 20px; }
+  .video-head p { font-size: 16px; }
 }
