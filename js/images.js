@@ -2,7 +2,7 @@
 (function () {
   function reveal(img) {
     img.style.display = "";
-    var parent = img.parentElement;
+    var parent = img.closest(".sub-media") || img.parentElement;
     if (!parent) return;
     var placeholders = parent.querySelectorAll(".photo-placeholder, .slide-placeholder");
     for (var i = 0; i < placeholders.length; i++) {
