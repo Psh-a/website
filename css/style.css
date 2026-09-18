@@ -726,7 +726,7 @@ a { color: inherit; text-decoration: none; }
   --rail-accent: rgba(200, 16, 46, 0.55);
   position: fixed;
   top: 0;
-  bottom: 0;
+  height: 0;
   width: min(236px, calc(50vw - 764px));
   display: none;
   overflow: hidden;
@@ -738,12 +738,8 @@ a { color: inherit; text-decoration: none; }
 .side-rail-left { left: 0; }
 .side-rail-right { right: 0; }
 
-.side-rail.on-dark {
-  --rail-line: rgba(255, 255, 255, 0.62);
-  --rail-ghost: rgba(255, 255, 255, 0.26);
-  --rail-accent: rgba(255, 140, 154, 0.6);
-}
-
+/* 装饰栏只绘制在浅色（空白）区域：高度由 js/rail.js 按顶部 hero 与 footer 之间的
+   可见区间实时裁剪，深蓝区域（header / hero / footer）内不出现。 */
 .side-rail .rail-inner {
   position: absolute;
   top: 50%;
