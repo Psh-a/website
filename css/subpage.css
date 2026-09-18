@@ -4,7 +4,7 @@
 .video-block { margin: 14px 0 30px; }
 
 .block-title {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 800;
   color: var(--navy-deep);
   margin: 0 0 20px;
@@ -13,67 +13,55 @@
   line-height: 1.35;
 }
 
-.video-stack { display: grid; gap: 34px; }
+.video-stack { display: grid; gap: 30px; }
 
-.video-item { margin: 0; }
+.video-item {
+  margin: 0;
+  background: var(--white);
+  border: 1px solid #e3e9f4;
+  border-radius: var(--radius);
+  padding: 24px 26px 28px;
+}
+
+.video-item:nth-child(even) { background: #f2f6fc; }
+
+.video-head {
+  margin-bottom: 16px;
+  padding-left: 14px;
+  border-left: 4px solid var(--red);
+}
+
+.video-head b {
+  display: block;
+  font-size: 23px;
+  line-height: 1.35;
+  color: var(--navy-deep);
+}
+
+.video-head p {
+  font-size: 16.5px;
+  color: var(--muted);
+  margin-top: 4px;
+}
 
 .video-frame {
   position: relative;
   display: block;
   width: 100%;
-  padding: 0;
-  border: 0;
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--navy-deep);
   aspect-ratio: 16 / 9;
-  cursor: pointer;
-  box-shadow: 0 18px 44px rgba(0, 30, 68, 0.22);
+  box-shadow: 0 12px 30px rgba(0, 30, 68, 0.16);
 }
 
-.video-frame img,
 .video-frame iframe {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
-  object-fit: cover;
   display: block;
-}
-
-.video-item figcaption {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  padding: 14px 4px 0;
-}
-
-.video-no {
-  font-size: 11.5px;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--red);
-}
-
-.video-item figcaption b {
-  font-size: 19px;
-  color: var(--navy-deep);
-}
-
-.video-item figcaption .video-note {
-  font-size: 14.5px;
-  color: var(--muted);
-}
-
-.video-link {
-  align-self: flex-start;
-  margin-top: 6px;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  color: var(--red);
 }
 
 .sec-media.fit-wide {
@@ -97,5 +85,6 @@
 @media (max-width: 860px) {
   .video-stack { gap: 24px; }
   .video-item { padding: 18px 18px 22px; }
-  .video-head b { font-size: 18px; }
+  .video-head b { font-size: 19px; }
+  .video-head p { font-size: 15px; }
 }
