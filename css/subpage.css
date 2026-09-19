@@ -1,49 +1,6 @@
 
 .page-hero h1 em { font-style: normal; color: var(--red); }
 
-.video-block { margin: 14px 0 30px; }
-
-.block-title {
-  font-size: 27px;
-  font-weight: 800;
-  color: var(--navy-deep);
-  margin: 0 0 20px;
-  padding-left: 14px;
-  border-left: 4px solid var(--red);
-  line-height: 1.35;
-}
-
-.video-stack { display: grid; gap: 30px; }
-
-.video-item {
-  margin: 0;
-  background: var(--white);
-  border: 1px solid #e3e9f4;
-  border-radius: var(--radius);
-  padding: 24px 26px 28px;
-}
-
-.video-item:nth-child(even) { background: #f2f6fc; }
-
-.video-head {
-  margin-bottom: 16px;
-  padding-left: 14px;
-  border-left: 4px solid var(--red);
-}
-
-.video-head b {
-  display: block;
-  font-size: 24px;
-  line-height: 1.35;
-  color: var(--navy-deep);
-}
-
-.video-head p {
-  font-size: 17.5px;
-  color: var(--muted);
-  margin-top: 4px;
-}
-
 .video-frame {
   position: relative;
   display: block;
@@ -64,42 +21,6 @@
   display: block;
 }
 
-.sec-media.fit-wide {
-  aspect-ratio: auto;
-  background: none;
-  align-self: center;
-  display: block;
-}
-
-.sec-media.fit-wide img {
-  position: static;
-  width: 100%;
-  height: auto;
-  border: 1px solid #e3e9f4;
-  border-radius: 10px;
-  background: var(--white);
-}
-
-.license-note { margin-top: 6px; }
-
-/* 执照区：改为上下排列，文字在上、图片在下（占满整行） */
-.sec.sec-stack {
-  grid-template-columns: minmax(0, 1fr);
-  gap: 22px;
-}
-
-.sec.sec-stack .sec-body { order: 1; }
-.sec.sec-stack .sec-media { order: 2; }
-.sec.sec-stack .sec-media.fit-wide { justify-self: stretch; width: 100%; }
-.sec.sec-stack .prose { max-width: 1040px; }
-
-@media (max-width: 860px) {
-  .video-stack { gap: 24px; }
-  .video-item { padding: 18px 18px 22px; }
-  .video-head b { font-size: 20px; }
-  .video-head p { font-size: 16px; }
-}
-
 /* --- The Awakening additions --- */
 .stats-row {
   display: grid;
@@ -117,13 +38,6 @@
 }
 .stat b { display: block; font-size: 28px; color: #1E407C; }
 .stat span { display: block; margin-top: 6px; font-size: 15px; color: #5a6b84; }
-.sec-media .img-cap {
-  margin-top: 10px;
-  font-size: 15px;
-  line-height: 1.55;
-  color: #5a6b84;
-  text-align: center;
-}
 .video-frame.video-pending {
   display: flex;
   align-items: center;
@@ -137,54 +51,9 @@
 @media (max-width: 760px) {
   .stats-row { grid-template-columns: 1fr; }
 }
-/* --- two-up image row --- */
-.img-duo {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-}
-.img-duo img {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 10px 28px rgba(0, 30, 68, 0.12);
-}
-@media (max-width: 760px) {
-  .img-duo { grid-template-columns: 1fr; }
-}
-
-/* --- soviet-theme page helpers --- */
-.lead-q {
-  font-weight: 700;
-  color: var(--navy, #1E407C);
-}
 .muted-note {
   color: #6b7a90;
   font-size: 15px;
-}
-
-/* 正文两端对齐：启用连字符避免两端对齐时词间距过大 */
-.prose p { text-align: justify; hyphens: auto; margin-bottom: 12px; }
-
-/* --- Creative Expressions：杂志式双栏正文 --- */
-.prose.prose-cols {
-  columns: 2;
-  column-gap: 56px;
-  column-rule: 1px solid rgba(30, 64, 124, 0.16);
-}
-.prose.prose-cols p:last-child { margin-bottom: 0; }
-.prose.prose-cols > p:first-child:not(.lead-q)::first-letter {
-  float: left;
-  font-size: 3.2em;
-  line-height: 0.8;
-  font-weight: 800;
-  color: var(--red);
-  padding: 6px 10px 0 0;
-}
-@media (max-width: 900px) {
-  .prose.prose-cols { columns: 1; column-rule: none; }
-  .prose.prose-cols > p:first-child:not(.lead-q)::first-letter {
-    float: none; font-size: inherit; font-weight: inherit; color: inherit; padding: 0;
-  }
 }
 
 /* --- 媒体小标题（居中细字 + 两侧短线） --- */
@@ -206,205 +75,6 @@
   height: 1px;
   width: 46px;
   background: rgba(30, 64, 124, 0.25);
-}
-
-/* 设计过程稿：缩小居中，与主图拉开层级 */
-.process-duo { max-width: 780px; margin: 0 auto; width: 100%; }
-.process-duo .img-duo { gap: 16px; }
-
-/* --- soviet-theme 排版强化：区块区分更明显 --- */
-.sec.body-wide { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
-
-/* --- 章节化排版：骑缝编号徽章 + 区块间菱形分隔 --- */
-.sec.chapter { position: relative; }
-
-.sec.chapter::before {
-  content: attr(data-num);
-  position: absolute;
-  top: -24px;
-  left: 26px;
-  width: 54px;
-  height: 54px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--red);
-  color: var(--white);
-  font-size: 21px;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(200, 16, 46, 0.35);
-}
-
-.sec.chapter:not(:last-of-type)::after {
-  content: "";
-  position: absolute;
-  top: -40px;
-  left: 50%;
-  width: 720px;
-  max-width: 70%;
-  height: 1px;
-  background: rgba(30, 64, 124, 0.28);
-  transform: translateX(-50%);
-}
-
-/* 图片按原始比例展示，避免 cover 裁切 */
-.sec-media.ratio-32 { aspect-ratio: 3 / 2; background: var(--white); }
-.sec-media.ratio-32.pos-40 img { object-position: 40% 50%; }
-.sec-media.ratio-wide { aspect-ratio: 16 / 9; }
-.sec-media.ratio-wide.bg-white { background: var(--white); }
-.sec-media.ratio-wide.bg-white img { object-fit: contain; }
-.sec-media.ratio-wide.pos-top img { object-position: 50% 25%; }
-
-/* --- multi-image media stack (Creative Expressions) --- */
-.media-stack { display: grid; gap: 18px; }
-
-.media-frame {
-  position: relative;
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
-  box-shadow: 0 12px 30px rgba(0, 30, 68, 0.16);
-}
-
-/* 图片按原始比例完整显示，相框随图走，不裁切、不露底色 */
-.media-frame img {
-  position: static;
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-/* 入口横幅等需要自定比例的容器 */
-.media-frame.launch { aspect-ratio: 16 / 9; }
-
-/* --- gamepad click-to-play CTA (Creative Expressions) --- */
-.sec-media.no-frame {
-  aspect-ratio: auto;
-  background: none;
-  padding: 0;
-  display: block;
-}
-
-.gamepad-cta {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  padding: 24px 30px;
-  border-radius: var(--radius);
-  background:
-    radial-gradient(circle at 90% 0%, rgba(200, 16, 46, 0.32), transparent 58%),
-    linear-gradient(135deg, #0a2e60 0%, #001e44 100%);
-  box-shadow: 0 12px 30px rgba(0, 30, 68, 0.18);
-}
-
-.gamepad-cta .gp-icon {
-  flex: 0 0 auto;
-  width: 96px;
-  height: auto;
-  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35));
-}
-
-.gamepad-cta img.gp-icon {
-  position: static;
-  width: 88px;
-  height: auto;
-  object-fit: contain;
-}
-
-.gamepad-cta .gp-text { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
-
-.gamepad-cta .gp-text b {
-  color: var(--white);
-  font-size: 24px;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  line-height: 1.2;
-}
-
-.gamepad-cta .gp-text i {
-  font-style: normal;
-  color: rgba(255, 255, 255, 0.65);
-  font-size: 15px;
-  letter-spacing: 0.04em;
-}
-
-.gamepad-cta .gp-arrow {
-  margin-left: auto;
-  color: var(--red-soft);
-  font-size: 32px;
-  font-weight: 800;
-  line-height: 1;
-}
-
-/* 通栏媒体限制宽度并与正文栏对齐 */
-.sec-stack .sec-media { max-width: 1040px; margin-left: auto; margin-right: auto; width: 100%; }
-.sec-media.fit-wide.capped { max-width: 960px; margin-left: auto; margin-right: auto; }
-.sec-media.ratio-32.capped-880 { max-width: 880px; margin-left: auto; margin-right: auto; }
-
-/* --- Creative Expressions 全新排版：白底章节式，无卡片 --- */
-.cx-sec { margin: 0 0 130px; }
-.cx-sec:last-of-type { margin-bottom: 90px; }
-
-.ch-head {
-  display: flex;
-  align-items: baseline;
-  gap: 24px;
-  padding-bottom: 18px;
-  margin-bottom: 28px;
-  border-bottom: 2px solid var(--navy);
-  position: relative;
-}
-.ch-head::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  width: 96px;
-  height: 2px;
-  background: var(--red);
-}
-.ch-num {
-  flex: 0 0 auto;
-  font-size: 64px;
-  font-weight: 800;
-  line-height: 0.85;
-  letter-spacing: 0.02em;
-  color: transparent;
-  -webkit-text-stroke: 2px var(--red);
-}
-.ch-head h2 {
-  margin: 0;
-  font-size: 27px;
-  font-weight: 800;
-  color: var(--navy);
-  line-height: 1.3;
-}
-
-.cx-sec .prose { max-width: 760px; }
-.cx-sec .prose > p:first-child:not(.lead-q)::first-letter {
-  float: left;
-  font-size: 3.2em;
-  line-height: 0.8;
-  font-weight: 800;
-  color: var(--red);
-  padding: 6px 10px 0 0;
-}
-.cx-sec .prose p.lead-q { font-size: 19px; }
-
-.ch-media { max-width: 1040px; margin: 36px auto 0; }
-.cx-sec .media-frame {
-  background: var(--white);
-  border: 1px solid rgba(30, 64, 124, 0.14);
-  box-shadow: 0 10px 26px rgba(0, 30, 68, 0.08);
-}
-
-@media (max-width: 760px) {
-  .cx-sec { margin-bottom: 84px; }
-  .ch-num { font-size: 44px; -webkit-text-stroke-width: 1.5px; }
-  .ch-head { gap: 16px; }
 }
 
 /* --- Creative Expressions 最终版：参考 creative.html 版式骨架（配色沿用本站） --- */
@@ -435,7 +105,6 @@
   font-weight: 800;
   line-height: 1.15;
 }
-.section-rule { flex: 1 1 auto; height: 4px; min-width: 40px; background: var(--red); opacity: 0.9; }
 
 .section p { margin-bottom: 1.1em; text-align: justify; hyphens: auto; }
 .section p:last-child { margin-bottom: 0; }
@@ -474,17 +143,6 @@
 }
 .media-duo .media { margin-top: 0; }
 
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 26px;
-  align-items: start;
-  margin-top: 34px;
-}
-.gallery-grid .media { margin-top: 0; }
-.gallery-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.gallery-grid-4 .media-caption { font-size: 12.5px; }
-
 .media-fill img {
   width: 100%;
   aspect-ratio: 16 / 10;
@@ -495,68 +153,8 @@
 .video-embed { position: relative; width: 100%; aspect-ratio: 16 / 9; background: var(--navy-deep); }
 .video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
-.split {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 54px;
-  align-items: center;
-  margin-top: 34px;
-}
-.split-media {
-  margin: 0;
-  position: relative;
-  aspect-ratio: 4 / 3;
-  background: var(--tint);
-  border: 1px solid var(--line-blue);
-  border-radius: 10px;
-  overflow: hidden;
-}
-.split-media::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 88px;
-  height: 6px;
-  background: var(--red);
-}
-.split-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.split-quote {
-  margin: 0 0 14px;
-  font-size: 23px;
-  font-weight: 700;
-  line-height: 1.35;
-  color: var(--red);
-}
-
 .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin: 32px 0 0; }
 .cta-center { justify-content: center; }
-
-/* --- self-made credit bar (Gaming in History) --- */
-.maker-note {
-  margin-top: 30px;
-  padding: 18px 22px;
-  border-left: 4px solid var(--red);
-  background: var(--tint);
-  border-radius: 0 6px 6px 0;
-}
-.maker-note b {
-  display: block;
-  font-size: 17px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--navy);
-  margin-bottom: 6px;
-}
-.maker-note p {
-  margin: 0;
-  font-size: 15px;
-  line-height: 1.6;
-  color: var(--muted);
-  text-align: left;
-  hyphens: none;
-}
 .btn {
   display: inline-flex;
   align-items: center;
@@ -574,8 +172,7 @@
 @media (max-width: 860px) {
   .section { padding: 60px 0; }
   .section-head { flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
-  .section-rule { flex: 1 1 100%; }
-  .media-duo, .split { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+  .media-duo { grid-template-columns: minmax(0, 1fr); gap: 26px; }
 }
 
 /* --- Drama image row: three square stills inline with text --- */
@@ -630,27 +227,6 @@
   .rec-panel-scene { padding: 22px 20px 26px; }
   .rec-panel-scene .trio-grid { margin-top: 22px; }
 }
-
-/* --- 04 Debate: echo bar --------------------------------------------- */
-/* The section used to open on a framed portrait beside a pull quote, which read
-   as a testimonial rather than as a student's own page. Both are gone: the
-   sentence is now an ordinary paragraph (`.section p` picks it up) and the
-   portrait has been dropped from the markup. Nothing is left to style here. */
-.section .deb-pull {
-  margin: 44px 0;
-  padding: 32px 40px;
-  background: var(--navy);
-  border-left: 6px solid var(--red);
-  border-radius: 12px;
-  font-size: clamp(21px, 2.5vw, 31px);
-  font-weight: 800;
-  line-height: 1.35;
-  letter-spacing: -0.01em;
-  color: var(--white);
-  text-align: left;
-  hyphens: none;
-  box-shadow: 0 16px 36px rgba(0, 30, 68, 0.18);
-}
 .award-panel {
   margin: 34px 0 0;
   padding: 26px 30px 30px;
@@ -673,7 +249,6 @@
 .award-panel > .media { margin-top: 0; }
 
 @media (max-width: 860px) {
-  .section .deb-pull { margin: 30px 0; padding: 24px 22px; }
   .award-panel { padding: 20px 20px 24px; }
   .award-panel .media-duo { gap: 16px; }
 }
@@ -800,4 +375,240 @@ body.cx .site-nav.nav-sections a.active::after {
   bottom: 3px;
   height: 3px;
   background: var(--red);
+}
+
+/* --- inner headings + opening copy (defying-gravity, the-awakening) --- */
+/* Those two pages carry more material than one numbered band can hold, so a
+   few old sub-sections were merged under a single head. This is the step-down
+   heading for a merged group: one size below .section-title, no number, and a
+   short red rule on the left so it still reads as part of the same family.
+   Only these two pages use the class, so the scope is just a safeguard. */
+body.cx .sub-head {
+  margin: 48px 0 18px;
+  padding-left: 16px;
+  border-left: 4px solid var(--red);
+  font-size: clamp(21px, 2.2vw, 28px);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+}
+
+/* the-awakening.html opens with two framing paragraphs before the first
+   numbered band. No head there, so the block only needs top spacing and no
+   rule of its own. */
+body.cx .section-intro { padding: 72px 0 0; border-bottom: 0; }
+
+/* soviet-theme.html swaps the hero summary card for a directory of the four
+   sub-projects. Same card chrome as the old .lede (pale ground, hairline box,
+   red rule on the left); rows carry the section numbers so the list reads as
+   an extension of the numbered bands below. Only this page uses the class. */
+body.cx .hero-toc {
+  margin: 26px auto 0;
+  max-width: 760px;
+  background: var(--paper);
+  border: 1px solid rgba(30, 64, 124, 0.12);
+  border-left: 3px solid var(--red);
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: left;
+}
+
+body.cx .hero-toc a {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 15px 24px;
+  text-decoration: none;
+  color: var(--navy);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.45;
+  transition: background 0.2s ease;
+}
+
+body.cx .hero-toc a + a { border-top: 1px solid rgba(30, 64, 124, 0.10); }
+
+body.cx .hero-toc .toc-num {
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  flex: 0 0 auto;
+}
+
+body.cx .hero-toc a:hover { background: rgba(200, 16, 46, 0.05); }
+
+body.cx .hero-toc a:hover .toc-title {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* --- fixed badges (back to top / back to index) ---
+   On wide viewports both badges ride just outside the reading column instead
+   of pinning to the window edge: 50% - 580px (half of .cx-wrap's 1160px) -
+   28px (its gutter) = right edge of the copy, minus the badge (46px) and a
+   114px breather. Narrower viewports fall back to the original 28px. */
+body.cx { --badge-x: max(28px, calc(50% - 580px + 28px - 160px)); }
+
+body.cx .back-top { right: var(--badge-x); }
+
+body.cx .back-home {
+  position: fixed;
+  left: var(--badge-x);
+  bottom: 28px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--red);
+  color: var(--white);
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+body.cx .back-home svg { width: 23px; height: 23px; display: block; }
+
+body.cx .back-home:hover,
+body.cx .back-home:focus-visible {
+  background: #a60d26;
+  transform: translateX(-3px);
+  box-shadow: 0 9px 22px rgba(200, 16, 46, 0.32);
+}
+
+@media (max-width: 760px) {
+  body.cx .back-top { right: 16px; bottom: 16px; width: 40px; height: 40px; font-size: 18px; }
+  body.cx .back-home { left: 16px; bottom: 16px; width: 40px; height: 40px; }
+  body.cx .back-home svg { width: 20px; height: 20px; }
+}
+
+/* --- 01 Preserving Ancient Trees: photo beside its copy ----------------
+   The lead shot of the funded report reads as a spread: the photo keeps the
+   left column, its caption moves up beside it instead of sitting underneath.
+   Below that, the three portraits of individual trees run side by side so the
+   damage done to each one can be compared at a glance; the tree each portrait
+   is about leads its caption in a darker ink. Both patterns are used on this
+   page only, hence the #ancient-trees scope. */
+body.cx .media-side {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(0, 1fr);
+  gap: 34px;
+  align-items: center;
+  margin-top: 30px;
+}
+body.cx .media-side > img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--line-blue);
+  border-radius: 10px;
+  background: var(--white);
+}
+/* the caption drops its card chrome — it stands beside the photo, not under it */
+body.cx .media-side .media-caption {
+  padding: 0;
+  border-top: 0;
+  background: transparent;
+}
+body.cx #ancient-trees .trio-grid .media-caption strong {
+  color: var(--navy-deep);
+  font-weight: 800;
+}
+
+@media (max-width: 980px) {
+  body.cx .media-side { grid-template-columns: minmax(0, 1fr); gap: 22px; align-items: start; }
+  body.cx #ancient-trees .trio-grid { grid-template-columns: minmax(0, 1fr); gap: 22px; margin-top: 30px; }
+  body.cx #ancient-trees .trio-grid .media { max-width: 460px; margin-left: auto; margin-right: auto; }
+}
+
+/* --- 03 the fundraising photos, side by side ----------------------------
+   Same three-across row as the tree portraits in 01, so the campaign stats,
+   the team poster and the Tencent Philanthropy front page read as one story
+   instead of three stacked slabs. The three files sit within 0.8% of the
+   same 0.82 ratio, so their captions land on a common line with no cropping.
+   Below 980px the row folds back to one column and .media-portrait's own
+   460px measure takes over again. */
+body.cx #fundraising .trio-grid { margin-top: 34px; }
+@media (max-width: 980px) {
+  body.cx #fundraising .trio-grid { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+}
+
+/* --- 01 the funded report, embedded as a readable PDF ------------------
+   The frame itself is cut to the shape of one A4 sheet (210:297) so a single
+   page fills it exactly - no half page, no sliver of the page below. Its
+   height caps at 78vh, which keeps a whole page on screen, and the width
+   follows from the ratio; the plain link underneath is the fallback for
+   browsers that will not render a PDF inside an iframe (iOS Safari shows the
+   first page only).
+   The line introducing the report reads as a standfirst: a red rule on the
+   left of the copy and bold navy type. It is dressed as a sibling of .sub-head
+   (same clamp, weight, leading and tracking) and sits flush with the left edge
+   of the column, so the two read as one family. The rule stretches to the
+   height of the copy it stands beside. */
+body.cx .report-lead {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 44px 0 22px;
+  color: var(--navy);
+  font-size: clamp(21px, 2.2vw, 28px);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-align: left;
+}
+body.cx .report-lead::before {
+  content: "";
+  flex: 0 0 4px;
+  align-self: stretch;
+  min-height: 1.5em;
+  border-radius: 2px;
+  background: var(--red);
+}
+body.cx .media-pdf {
+  /* the frame wraps the A4-shaped viewer, so the card border hugs one sheet
+     instead of stretching across the whole column */
+  width: fit-content;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+body.cx .media-pdf .pdf-view {
+  --pdf-h: min(1180px, 78vh);
+  display: block;
+  width: calc(var(--pdf-h) * 210 / 297);
+  max-width: 100%;
+  height: var(--pdf-h);
+  border: 0;
+  background: var(--tint);
+}
+body.cx .media-pdf .pdf-bar { text-align: right; }
+/* the fallback link wears the same navy bold type as before, but the rule
+   under the words becomes a hairline oval wrapped around the whole label */
+body.cx .media-pdf .pdf-bar a {
+  display: inline-block;
+  padding: 9px 22px;
+  border: 1px solid rgba(30, 64, 124, 0.3);
+  border-radius: 999px;
+  color: var(--navy);
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+body.cx .media-pdf .pdf-bar a:hover {
+  color: var(--red);
+  border-color: var(--red);
+  background: rgba(200, 16, 46, 0.04);
+}
+
+@media (max-width: 760px) {
+  body.cx .media-pdf .pdf-view { --pdf-h: min(900px, 64vh); }
+  body.cx .report-lead { gap: 14px; }
+  /* the oval keeps its stadium ends on the narrower card, so the label simply
+     steps in instead of running into the curve */
+  body.cx .media-pdf .pdf-bar a { padding: 8px 16px; }
 }
