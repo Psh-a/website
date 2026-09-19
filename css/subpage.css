@@ -1,5 +1,5 @@
 
-.page-hero h1 em { font-style: normal; color: var(--red-soft); }
+.page-hero h1 em { font-style: normal; color: var(--red); }
 
 .video-block { margin: 14px 0 30px; }
 
@@ -85,7 +85,7 @@
 /* 执照区：改为上下排列，文字在上、图片在下（占满整行） */
 .sec.sec-stack {
   grid-template-columns: minmax(0, 1fr);
-  gap: 26px;
+  gap: 22px;
 }
 
 .sec.sec-stack .sec-body { order: 1; }
@@ -98,4 +98,706 @@
   .video-item { padding: 18px 18px 22px; }
   .video-head b { font-size: 20px; }
   .video-head p { font-size: 16px; }
+}
+
+/* --- The Awakening additions --- */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin: 24px 0 8px;
+}
+.stat {
+  background: #ffffff;
+  border: 1px solid #e3eaf5;
+  border-radius: 14px;
+  padding: 22px 18px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 30, 68, 0.06);
+}
+.stat b { display: block; font-size: 28px; color: #1E407C; }
+.stat span { display: block; margin-top: 6px; font-size: 15px; color: #5a6b84; }
+.sec-media .img-cap {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #5a6b84;
+  text-align: center;
+}
+.video-frame.video-pending {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 9;
+  background: #0a2e60;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 17px;
+  letter-spacing: 0.5px;
+}
+@media (max-width: 760px) {
+  .stats-row { grid-template-columns: 1fr; }
+}
+/* --- two-up image row --- */
+.img-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.img-duo img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 10px 28px rgba(0, 30, 68, 0.12);
+}
+@media (max-width: 760px) {
+  .img-duo { grid-template-columns: 1fr; }
+}
+
+/* --- soviet-theme page helpers --- */
+.lead-q {
+  font-weight: 700;
+  color: var(--navy, #1E407C);
+}
+.muted-note {
+  color: #6b7a90;
+  font-size: 15px;
+}
+
+/* 正文两端对齐：启用连字符避免两端对齐时词间距过大 */
+.prose p { text-align: justify; hyphens: auto; margin-bottom: 12px; }
+
+/* --- Creative Expressions：杂志式双栏正文 --- */
+.prose.prose-cols {
+  columns: 2;
+  column-gap: 56px;
+  column-rule: 1px solid rgba(30, 64, 124, 0.16);
+}
+.prose.prose-cols p:last-child { margin-bottom: 0; }
+.prose.prose-cols > p:first-child:not(.lead-q)::first-letter {
+  float: left;
+  font-size: 3.2em;
+  line-height: 0.8;
+  font-weight: 800;
+  color: var(--red);
+  padding: 6px 10px 0 0;
+}
+@media (max-width: 900px) {
+  .prose.prose-cols { columns: 1; column-rule: none; }
+  .prose.prose-cols > p:first-child:not(.lead-q)::first-letter {
+    float: none; font-size: inherit; font-weight: inherit; color: inherit; padding: 0;
+  }
+}
+
+/* --- 媒体小标题（居中细字 + 两侧短线） --- */
+.media-cap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: #7d8aa5;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.media-cap::before,
+.media-cap::after {
+  content: "";
+  height: 1px;
+  width: 46px;
+  background: rgba(30, 64, 124, 0.25);
+}
+
+/* 设计过程稿：缩小居中，与主图拉开层级 */
+.process-duo { max-width: 780px; margin: 0 auto; width: 100%; }
+.process-duo .img-duo { gap: 16px; }
+
+/* --- soviet-theme 排版强化：区块区分更明显 --- */
+.sec.body-wide { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+
+/* --- 章节化排版：骑缝编号徽章 + 区块间菱形分隔 --- */
+.sec.chapter { position: relative; }
+
+.sec.chapter::before {
+  content: attr(data-num);
+  position: absolute;
+  top: -24px;
+  left: 26px;
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--red);
+  color: var(--white);
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(200, 16, 46, 0.35);
+}
+
+.sec.chapter:not(:last-of-type)::after {
+  content: "";
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  width: 720px;
+  max-width: 70%;
+  height: 1px;
+  background: rgba(30, 64, 124, 0.28);
+  transform: translateX(-50%);
+}
+
+/* 图片按原始比例展示，避免 cover 裁切 */
+.sec-media.ratio-32 { aspect-ratio: 3 / 2; background: var(--white); }
+.sec-media.ratio-32.pos-40 img { object-position: 40% 50%; }
+.sec-media.ratio-wide { aspect-ratio: 16 / 9; }
+.sec-media.ratio-wide.bg-white { background: var(--white); }
+.sec-media.ratio-wide.bg-white img { object-fit: contain; }
+.sec-media.ratio-wide.pos-top img { object-position: 50% 25%; }
+
+/* --- multi-image media stack (Creative Expressions) --- */
+.media-stack { display: grid; gap: 18px; }
+
+.media-frame {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+  box-shadow: 0 12px 30px rgba(0, 30, 68, 0.16);
+}
+
+/* 图片按原始比例完整显示，相框随图走，不裁切、不露底色 */
+.media-frame img {
+  position: static;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* 入口横幅等需要自定比例的容器 */
+.media-frame.launch { aspect-ratio: 16 / 9; }
+
+/* --- gamepad click-to-play CTA (Creative Expressions) --- */
+.sec-media.no-frame {
+  aspect-ratio: auto;
+  background: none;
+  padding: 0;
+  display: block;
+}
+
+.gamepad-cta {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 30px;
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at 90% 0%, rgba(200, 16, 46, 0.32), transparent 58%),
+    linear-gradient(135deg, #0a2e60 0%, #001e44 100%);
+  box-shadow: 0 12px 30px rgba(0, 30, 68, 0.18);
+}
+
+.gamepad-cta .gp-icon {
+  flex: 0 0 auto;
+  width: 96px;
+  height: auto;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35));
+}
+
+.gamepad-cta img.gp-icon {
+  position: static;
+  width: 88px;
+  height: auto;
+  object-fit: contain;
+}
+
+.gamepad-cta .gp-text { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+
+.gamepad-cta .gp-text b {
+  color: var(--white);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.gamepad-cta .gp-text i {
+  font-style: normal;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+}
+
+.gamepad-cta .gp-arrow {
+  margin-left: auto;
+  color: var(--red-soft);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* 通栏媒体限制宽度并与正文栏对齐 */
+.sec-stack .sec-media { max-width: 1040px; margin-left: auto; margin-right: auto; width: 100%; }
+.sec-media.fit-wide.capped { max-width: 960px; margin-left: auto; margin-right: auto; }
+.sec-media.ratio-32.capped-880 { max-width: 880px; margin-left: auto; margin-right: auto; }
+
+/* --- Creative Expressions 全新排版：白底章节式，无卡片 --- */
+.cx-sec { margin: 0 0 130px; }
+.cx-sec:last-of-type { margin-bottom: 90px; }
+
+.ch-head {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  padding-bottom: 18px;
+  margin-bottom: 28px;
+  border-bottom: 2px solid var(--navy);
+  position: relative;
+}
+.ch-head::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 96px;
+  height: 2px;
+  background: var(--red);
+}
+.ch-num {
+  flex: 0 0 auto;
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: 0.02em;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--red);
+}
+.ch-head h2 {
+  margin: 0;
+  font-size: 27px;
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1.3;
+}
+
+.cx-sec .prose { max-width: 760px; }
+.cx-sec .prose > p:first-child:not(.lead-q)::first-letter {
+  float: left;
+  font-size: 3.2em;
+  line-height: 0.8;
+  font-weight: 800;
+  color: var(--red);
+  padding: 6px 10px 0 0;
+}
+.cx-sec .prose p.lead-q { font-size: 19px; }
+
+.ch-media { max-width: 1040px; margin: 36px auto 0; }
+.cx-sec .media-frame {
+  background: var(--white);
+  border: 1px solid rgba(30, 64, 124, 0.14);
+  box-shadow: 0 10px 26px rgba(0, 30, 68, 0.08);
+}
+
+@media (max-width: 760px) {
+  .cx-sec { margin-bottom: 84px; }
+  .ch-num { font-size: 44px; -webkit-text-stroke-width: 1.5px; }
+  .ch-head { gap: 16px; }
+}
+
+/* --- Creative Expressions 最终版：参考 creative.html 版式骨架（配色沿用本站） --- */
+:root { --tint: #eef2f9; --line-blue: rgba(30, 64, 124, 0.18); }
+
+.section { padding: 84px 0; border-bottom: 1px solid var(--line-blue); }
+.section-alt { background: var(--tint); }
+.section:last-of-type { border-bottom: 0; }
+
+.cx-wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+
+.section-head { display: flex; align-items: center; gap: 18px; margin-bottom: 46px; }
+.section-num {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  font-size: clamp(44px, 5vw, 72px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(200, 16, 46, 0.65);
+}
+.section-title {
+  font-size: clamp(27px, 3.6vw, 46px);
+  letter-spacing: -0.02em;
+  color: var(--navy);
+  font-weight: 800;
+  line-height: 1.15;
+}
+.section-rule { flex: 1 1 auto; height: 4px; min-width: 40px; background: var(--red); opacity: 0.9; }
+
+.section p { margin-bottom: 1.1em; text-align: justify; hyphens: auto; }
+.section p:last-child { margin-bottom: 0; }
+
+.media {
+  margin: 30px 0 0;
+  border: 1px solid var(--line-blue);
+  border-radius: 10px;
+  background: var(--white);
+  overflow: hidden;
+}
+.media img { width: 100%; height: auto; display: block; }
+.media-caption {
+  padding: 12px 16px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--muted);
+  border-top: 1px solid var(--line-blue);
+  background: var(--tint);
+  text-align: left;
+}
+.media-wide { margin-top: 30px; }
+
+/* 限宽居中的媒体（如 Click and Play 上方的入口截图） */
+.media-center { max-width: 780px; margin-left: auto; margin-right: auto; }
+
+/* 竖版媒体（证书等 A4 比例），限窄居中避免过高 */
+.media-portrait { max-width: 460px; margin-left: auto; margin-right: auto; }
+
+.media-duo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 26px;
+  align-items: start;
+  margin-top: 34px;
+}
+.media-duo .media { margin-top: 0; }
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px;
+  align-items: start;
+  margin-top: 34px;
+}
+.gallery-grid .media { margin-top: 0; }
+.gallery-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.gallery-grid-4 .media-caption { font-size: 12.5px; }
+
+.media-fill img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  height: auto;
+  object-fit: cover;
+}
+
+.video-embed { position: relative; width: 100%; aspect-ratio: 16 / 9; background: var(--navy-deep); }
+.video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 54px;
+  align-items: center;
+  margin-top: 34px;
+}
+.split-media {
+  margin: 0;
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--tint);
+  border: 1px solid var(--line-blue);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.split-media::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 88px;
+  height: 6px;
+  background: var(--red);
+}
+.split-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.split-quote {
+  margin: 0 0 14px;
+  font-size: 23px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--red);
+}
+
+.cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin: 32px 0 0; }
+.cta-center { justify-content: center; }
+
+/* --- self-made credit bar (Gaming in History) --- */
+.maker-note {
+  margin-top: 30px;
+  padding: 18px 22px;
+  border-left: 4px solid var(--red);
+  background: var(--tint);
+  border-radius: 0 6px 6px 0;
+}
+.maker-note b {
+  display: block;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+.maker-note p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+  text-align: left;
+  hyphens: none;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 26px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border-radius: 6px;
+  border: 2px solid var(--navy);
+}
+.btn-primary { background: var(--navy); color: var(--white); }
+.btn-primary img.gp-icon { position: static; width: 34px; height: auto; }
+
+@media (max-width: 860px) {
+  .section { padding: 60px 0; }
+  .section-head { flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+  .section-rule { flex: 1 1 100%; }
+  .media-duo, .split { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+}
+
+/* --- Drama image row: three square stills inline with text --- */
+.trio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+  align-items: start;
+  margin-top: 26px;
+}
+.trio-grid .media { margin-top: 0; }
+@media (max-width: 760px) {
+  .trio-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+}
+
+/* --- 02 Drama: editorial treatment -------------------------------------
+   (a) narrative copy runs the same measure as the media rows, so the
+       left and right edges of text and photos line up exactly
+   (b) record cards: two white cards side by side, each = photo + its copy
+   ---------------------------------------------------------------------- */
+#drama > .cx-wrap > p { max-width: none; }
+
+.rec-set {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px;
+  align-items: start;
+  margin: 46px 0 34px;
+}
+.rec-panel {
+  display: block;
+  margin: 0;
+  padding: 26px 26px 30px;
+  background: var(--white);
+  border: 1px solid var(--line-blue);
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(30, 64, 124, 0.07);
+}
+.rec-panel .rec-media { margin: 0 0 24px; }
+.rec-panel .rec-media img { width: 100%; height: auto; display: block; }
+.rec-panel-doc .rec-media { max-width: 240px; margin-left: auto; margin-right: auto; }
+/* first block of 02: the three musical stills sit on the same white card */
+.rec-panel-scene { margin: 0; padding: 30px 30px 34px; }
+.rec-panel-scene p { margin: 0; }
+.rec-panel-scene .trio-grid { margin-top: 28px; }
+.rec-body p { margin: 0 0 1.05em; text-align: justify; hyphens: auto; }
+.rec-body p:last-child { margin-bottom: 0; }
+
+@media (max-width: 860px) {
+  .rec-set { grid-template-columns: minmax(0, 1fr); gap: 22px; margin: 34px 0 26px; }
+  .rec-panel { padding: 22px 20px 26px; }
+  .rec-panel-scene { padding: 22px 20px 26px; }
+  .rec-panel-scene .trio-grid { margin-top: 22px; }
+}
+
+/* --- 04 Debate: echo bar --------------------------------------------- */
+/* The section used to open on a framed portrait beside a pull quote, which read
+   as a testimonial rather than as a student's own page. Both are gone: the
+   sentence is now an ordinary paragraph (`.section p` picks it up) and the
+   portrait has been dropped from the markup. Nothing is left to style here. */
+.section .deb-pull {
+  margin: 44px 0;
+  padding: 32px 40px;
+  background: var(--navy);
+  border-left: 6px solid var(--red);
+  border-radius: 12px;
+  font-size: clamp(21px, 2.5vw, 31px);
+  font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  text-align: left;
+  hyphens: none;
+  box-shadow: 0 16px 36px rgba(0, 30, 68, 0.18);
+}
+.award-panel {
+  margin: 34px 0 0;
+  padding: 26px 30px 30px;
+  background: var(--white);
+  border: 1px solid var(--line-blue);
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(30, 64, 124, 0.07);
+}
+.award-label {
+  display: block;
+  margin-bottom: 22px;
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.award-panel .media-duo { margin-top: 0; }
+/* a lone media block under the label (soviet-theme.html) */
+.award-panel > .media { margin-top: 0; }
+
+@media (max-width: 860px) {
+  .section .deb-pull { margin: 30px 0; padding: 24px 22px; }
+  .award-panel { padding: 20px 20px 24px; }
+  .award-panel .media-duo { gap: 16px; }
+}
+
+/* --- header nav carrying the page's own section titles ------------------ */
+.site-nav.nav-sections { gap: 4px; flex-wrap: nowrap; justify-content: flex-end; }
+.site-nav.nav-sections a { font-size: 14.5px; padding: 7px 13px; white-space: nowrap; }
+.section[id] { scroll-margin-top: 92px; }
+@media (max-width: 1180px) {
+  .site-nav.nav-sections { gap: 2px; }
+  .site-nav.nav-sections a { font-size: 13px; padding: 6px 10px; }
+}
+@media (max-width: 900px) {
+  .site-nav.nav-sections { display: none; }
+}
+
+/* =====================================================================
+   creative-expressions.html only — type scale one step up + page header
+   Everything below is scoped with body.cx so the other pages keep their
+   current sizes.
+   ===================================================================== */
+body.cx { font-size: 17.5px; line-height: 1.72; }
+
+/* --- header: brand + page tag --------------------------------------- */
+body.cx .brand { font-size: 20px; }
+body.cx .brand-tag {
+  margin: 0 0 0 14px;
+  padding-left: 16px;
+  border-left: 1px solid rgba(255, 255, 255, 0.26);
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.66);
+  white-space: nowrap;
+}
+body.cx .site-nav.nav-sections { margin-left: auto; }
+body.cx .site-nav.nav-sections a { font-size: 14.5px; }
+
+/* The five full section titles plus brand and tag no longer fit on one
+   line on most screens, so the header is allowed to wrap: brand + tag on
+   the first line, the section nav on a second line below it. The auto
+   right margin on the tag keeps brand and tag grouped on the left and
+   pushes the nav to the right edge whenever everything fits on one line. */
+body.cx .site-header .container {
+  height: auto;
+  min-height: 64px;
+  flex-wrap: wrap;
+  row-gap: 6px;
+  justify-content: flex-start;
+  padding: 9px 24px 10px;
+}
+body.cx .section[id] { scroll-margin-top: 118px; }
+/* soviet-theme.html's nav is shorter, so its header stays on one line at
+   desktop widths (67px instead of creative's taller two-line header). The
+   118px offset would leave a visible gap above every section. */
+body.sov .section[id] { scroll-margin-top: 88px; }
+
+@media (max-width: 1230px) { body.cx .site-nav.nav-sections a { font-size: 13.5px; } }
+@media (max-width: 1120px) { body.cx .site-nav.nav-sections a { font-size: 12.5px; } }
+@media (max-width: 970px)  { body.cx .site-nav.nav-sections { display: none; } }
+@media (max-width: 760px)  {
+  body.cx .brand-tag { margin-left: 10px; padding-left: 12px; font-size: 13px; }
+}
+
+/* --- header ---------------------------------------------------------- */
+/* style.css paints a 3px red rule under the header. The home page dropped it
+   long ago - the nav carries a red underline on the active item instead - so
+   the same goes here, keeping the header band clean on every subpage. */
+.site-header { border-bottom: 0; }
+
+/* --- page hero ------------------------------------------------------- */
+/* The white ground, the dropped red rule and the home page type scale are no
+   longer scoped per page - they live on the plain .page-hero rules in
+   style.css, so every subpage inherits them (creative, soviet, defying-gravity
+   and the-awakening alike) with no overrides needed here. */
+
+/* --- section heads and blocks --------------------------------------- */
+body.cx .section-num { font-size: clamp(46px, 5.2vw, 76px); }
+body.cx .section-title { font-size: clamp(29px, 3.7vw, 49px); }
+body.cx .media-cap { font-size: 13.5px; }
+body.cx .media-caption { font-size: 14.5px; }
+body.cx .award-label { font-size: 13.5px; }
+body.cx .btn { font-size: 16px; }
+
+/* --- side rail + footer --------------------------------------------- */
+body.cx .side-rail .rail-chip { font-size: 14px; }
+body.cx .side-rail .rail-live { font-size: 15px; }
+body.cx .site-footer .brand { font-size: 18px; }
+body.cx .footer-note { font-size: 15px; }
+
+/* --- section numbers as red squares (2026-09-19) --------------------- */
+body.cx .section-head { gap: 22px; }
+body.cx .section-num {
+  font-size: clamp(27px, 3.1vw, 39px);
+  width: 1.6em;
+  height: 1.6em;
+  justify-content: center;
+  letter-spacing: 0;
+  color: var(--white);
+  background: var(--red);
+  -webkit-text-stroke-width: 0;
+  border-radius: 0.32em;
+}
+
+/* --- nav marker follows the section being read (nav-spy.js) ---------- */
+body.cx .site-nav.nav-sections a {
+  padding: 8px 15px;
+  border-radius: 0;
+  font-weight: 600;
+  position: relative;
+}
+/* Active marker: a red rule under the label. Drawn as a pseudo element so
+   switching items never changes the box size — this header is allowed to
+   wrap, and any reflow would shift the whole page. */
+body.cx .site-nav.nav-sections a.active {
+  color: var(--white);
+  background: transparent;
+}
+body.cx .site-nav.nav-sections a.active::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  bottom: 3px;
+  height: 3px;
+  background: var(--red);
 }

@@ -35,24 +35,22 @@
     return text.length > 12 ? text.split(" ")[0] : text;
   }
 
-  /* 两侧装饰栏只出现在"空白"（浅色）区域：上不进入顶部深色区（hero / page-hero），
-     下不进入 footer。滚动时按当前可见的浅色区间实时裁剪。 */
-  function clipRail() {
-    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-    const vh = window.innerHeight;
-    const lightTop = topZone ? docTop(topZone) + topZone.offsetHeight : 0;
+  /* 装饰栏放在文档流中（position:absolute）：进入页面时按"浅色区域"（hero 底边 → footer 顶边）
+     一次性定位并完整显示，之后随页面内容一起滚动，不再跟随视口。
+     RAIL_TOP_GAP：浅色区顶部再往下留一点空隙，装饰内容从 hero 底边下方开始。 */
+  const RAIL_TOP_GAP = 60;
+  function placeRail() {
+    const lightTop = topZone ? docTop(topZone) + topZone.offsetHeight + RAIL_TOP_GAP : 0;
     const lightBottom = footer ? docTop(footer) : document.documentElement.scrollHeight;
-    const top = Math.max(scrollY, lightTop);
-    const bottom = Math.min(scrollY + vh, lightBottom);
-    const h = Math.max(0, bottom - top);
+    const h = Math.max(0, lightBottom - lightTop);
     rails.forEach(function (rail) {
-      rail.style.top = top - scrollY + "px";
+      rail.style.top = lightTop + "px";
       rail.style.height = h + "px";
     });
   }
 
   function update() {
-    clipRail();
+    placeRail();
 
     const mid = window.innerHeight / 2;
 

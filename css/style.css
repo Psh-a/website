@@ -16,6 +16,7 @@
 html { scroll-behavior: smooth; }
 
 body {
+  position: relative;
   font-family: "Inter", "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
   background: var(--paper);
   color: var(--ink);
@@ -71,12 +72,18 @@ a { color: inherit; text-decoration: none; }
   background: var(--red);
 }
 
+/* Two knobs drive the whole band: the width of the centred content box and the
+   gap between photo and copy. The photo layer reads both, so it stays locked
+   to the same box the grid uses at every viewport width. */
 .hero {
-  background: #0a2e60;
-  color: var(--white);
+  --hero-box: 1420px;
+  --hero-gap: 56px;
+  background: var(--white);
+  color: var(--ink);
   padding: 80px 0 72px;
   position: relative;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  overflow: hidden;
+  border-bottom: 1px solid rgba(30, 64, 124, 0.10);
 }
 
 .hero::after {
@@ -89,21 +96,47 @@ a { color: inherit; text-decoration: none; }
   height: 4px;
   background: var(--red);
   border-radius: 2px;
+  z-index: 2;
 }
 
+/* The copy column is sized so the photo column - and therefore the photo layer
+   behind it - comes out much larger than a thumbnail, while the two halves stay
+   shoulder to shoulder inside one centred box. */
 .hero-inner {
   display: grid;
-  grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
-  gap: 72px;
+  grid-template-columns: minmax(0, 1.38fr) minmax(0, 1fr);
+  gap: var(--hero-gap);
   align-items: center;
+  max-width: var(--hero-box);
 }
 
-.hero-photo {
+/* The photo is out of flow, so the copy has to be told to take the second
+   column explicitly - otherwise it snaps into the first one. */
+.hero-text {
   position: relative;
-  aspect-ratio: 1 / 1.08;
-  max-width: 420px;
+  z-index: 1;
+  grid-column: 2 / -1;
   width: 100%;
-  min-height: 280px;
+}
+
+/* Pinned to the left edge of that same content box and stretched over the full
+   height of the band, so the portrait keeps the big-plate weight it had when it
+   hugged the window edge - it is just anchored to the copy's box now, a gap
+   away from the text, instead of running off to the far left. Only the right
+   edge is feathered, so the face itself stays sharp. */
+.hero-photo {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: max(24px, calc((100% - var(--hero-box)) / 2 + 24px));
+  width: calc((min(100%, var(--hero-box)) - var(--hero-gap) - 48px) * 0.57983);
+  max-width: none;
+  min-height: 0;
+  aspect-ratio: auto;
+  z-index: 0;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 78%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to right, #000 0%, #000 78%, rgba(0, 0, 0, 0) 100%);
 }
 
 .hero-photo img {
@@ -112,14 +145,7 @@ a { color: inherit; text-decoration: none; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  -webkit-mask-image:
-    linear-gradient(to right, transparent 0%, #000 16%, #000 84%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, #000 16%, #000 84%, transparent 100%);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    linear-gradient(to right, transparent 0%, #000 16%, #000 84%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, #000 16%, #000 84%, transparent 100%);
-  mask-composite: intersect;
+  object-position: 32% center;
   filter: saturate(0.95);
 }
 
@@ -131,14 +157,14 @@ a { color: inherit; text-decoration: none; }
   justify-content: center;
   text-align: center;
   padding: 0 20px;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(18, 33, 58, 0.35);
   font-size: 15px;
   letter-spacing: 0.06em;
 }
 
 .hero-text .eyebrow {
   display: inline-block;
-  color: var(--red-soft);
+  color: var(--red);
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.22em;
@@ -153,11 +179,11 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.1;
 }
 
-.hero-text h1 em { font-style: normal; color: var(--red-soft); }
+.hero-text h1 em { font-style: normal; color: var(--red); }
 
 .hero-text p.tagline {
   margin: 20px 0 0;
-  color: var(--muted-light);
+  color: var(--muted);
   font-size: 19.5px;
   max-width: 580px;
   text-align: justify;
@@ -167,8 +193,8 @@ a { color: inherit; text-decoration: none; }
 .hero-text .text-box {
   margin-top: 24px;
   padding: 26px 30px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: var(--paper);
+  border: 1px solid rgba(30, 64, 124, 0.12);
   border-left: 3px solid var(--red);
   border-radius: 12px;
 }
@@ -180,9 +206,8 @@ a { color: inherit; text-decoration: none; }
 }
 
 .carousel-section {
-  background: var(--white);
+  background: transparent;
   padding: 56px 0 88px;
-  border-bottom: 1px solid #e6ebf4;
 }
 
 .carousel {
@@ -389,7 +414,7 @@ a { color: inherit; text-decoration: none; }
 
 .sub-item.is-clickable { cursor: pointer; }
 
-.sub-item:first-child .sub-media { order: -1; }
+.row-subs .sub-item:nth-child(odd) .sub-media { order: -1; }
 
 .sub-media {
   position: relative;
@@ -525,33 +550,51 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 28px;
 }
 
+/* Subpage hero band, centred. Same white ground as the home page hero, and it
+   borrows that band's two framing devices: the intro copy sits in the same pale
+   card with a red edge the home page uses, and the headline is stepped up a
+   size so it carries the whole band. */
 .page-hero {
-  background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 100%);
-  color: var(--white);
-  padding: 88px 0 64px;
-  border-bottom: 4px solid var(--red);
+  background: var(--white);
+  color: var(--ink);
+  padding: 88px 0 88px;
+  text-align: center;
+  border-bottom: 1px solid rgba(30, 64, 124, 0.10);
 }
 
 .page-hero .kicker {
-  color: var(--red-soft);
+  color: var(--red);
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
 }
 
 .page-hero h1 {
-  font-size: clamp(36px, 5.2vw, 58px);
+  font-size: clamp(48px, 7vw, 72px);
   font-weight: 800;
-  margin-top: 10px;
-  max-width: 760px;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 12px auto 0;
+  max-width: 980px;
 }
 
+/* The copy wears the home page's card: pale ground, hairline box, red rule
+   down its left edge. Centred text would fight the justified column, so the
+   card keeps the home page's justification. */
 .page-hero .lede {
-  margin-top: 18px;
-  max-width: 680px;
-  color: var(--muted-light);
+  margin: 26px auto 0;
+  max-width: 760px;
+  padding: 26px 30px;
+  background: var(--paper);
+  border: 1px solid rgba(30, 64, 124, 0.12);
+  border-left: 3px solid var(--red);
+  border-radius: 12px;
+  color: var(--muted);
   font-size: 19.5px;
+  line-height: 1.7;
+  text-align: justify;
+  hyphens: auto;
 }
 
 .page-body { padding: 56px 0 88px; }
@@ -559,11 +602,11 @@ a { color: inherit; text-decoration: none; }
 .sec {
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  gap: 40px;
+  gap: 30px;
   align-items: start;
-  padding: 44px 40px;
+  padding: 38px 34px;
   border-radius: 22px;
-  margin-bottom: 28px;
+  margin-bottom: 80px;
 }
 
 .sec.tint-blue { background: #eef2fa; }
@@ -724,12 +767,11 @@ a { color: inherit; text-decoration: none; }
   --rail-line: rgba(30, 64, 124, 0.7);
   --rail-ghost: rgba(30, 64, 124, 0.32);
   --rail-accent: rgba(200, 16, 46, 0.55);
-  position: fixed;
+  position: absolute;
   top: 0;
   height: 0;
-  width: min(236px, calc(50vw - 764px));
+  width: min(200px, calc(50vw - 780px));
   display: none;
-  overflow: hidden;
   pointer-events: none;
   user-select: none;
   z-index: 1;
@@ -738,12 +780,10 @@ a { color: inherit; text-decoration: none; }
 .side-rail-left { left: 0; }
 .side-rail-right { right: 0; }
 
-/* 装饰栏只绘制在浅色（空白）区域：高度由 js/rail.js 按顶部 hero 与 footer 之间的
-   可见区间实时裁剪，深蓝区域（header / hero / footer）内不出现。 */
+/* 装饰栏定位在文档流中：由 js/rail.js 按顶部 hero 与 footer 之间的浅色区域一次性定位——进入页面即完整显示，随后随页面一起滚动；深蓝区域（header / hero / footer）内不出现。 */
 .side-rail .rail-inner {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  position: sticky;
+  top: 140px;
   left: 18px;
   display: flex;
   flex-direction: column;
@@ -790,7 +830,7 @@ a { color: inherit; text-decoration: none; }
 
 .side-rail .rail-mark {
   writing-mode: vertical-rl;
-  font-size: clamp(38px, 5.4vh, 78px);
+  font-size: clamp(28px, 4vh, 54px);
   font-weight: 800;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -874,7 +914,23 @@ a { color: inherit; text-decoration: none; }
   .project-row.flip .row-media { order: 0; }
   .project-row.flip .row-content { order: 1; }
   .hero-inner { grid-template-columns: 1fr; gap: 24px; }
-  .hero-photo { max-width: 340px; margin: 0 auto; width: 100%; }
+  .hero-text { grid-column: auto; margin-left: 0; width: 100%; }
+  /* Small screens drop the overlap: the portrait returns to being a normal
+     block above the copy, uncropped and without the feather. */
+  .hero-photo {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1.08;
+    max-width: 340px;
+    min-height: 280px;
+    margin: 0 auto;
+    pointer-events: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
   .sec { grid-template-columns: 1fr; gap: 24px; padding: 36px 24px; }
   .sec.flip .sec-media { order: 0; }
   .sec.flip .sec-body { order: 1; }
@@ -885,4 +941,104 @@ a { color: inherit; text-decoration: none; }
   .carousel { aspect-ratio: 4 / 3; }
   .carousel-slide .slide-overlay { padding: 22px; }
   .site-footer .container { flex-direction: column; text-align: center; }
+}
+
+/* =====================================================================
+   index.html only (body.home)
+   The header used to carry a full-width red rule along its bottom edge.
+   That rule is gone on the home page; the red now marks the nav item of
+   the section currently being read, exactly like the subpages do.
+   js/nav-spy.js sets .active; the marker is a pseudo element so switching
+   items never changes the box size.
+   ===================================================================== */
+body.home .site-header { border-bottom: 0; }
+
+body.home .site-nav a { position: relative; }
+
+body.home .site-nav a.active {
+  color: var(--white);
+  background: transparent;
+}
+body.home .site-nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  bottom: 3px;
+  height: 3px;
+  background: var(--red);
+}
+
+/* =====================================================================
+   index.html only (body.home) — project entry buttons
+   Every project row carries one primary button into that row's subpage;
+   every sub-item repeats the same jump as a red pill, so the card reads
+   as a single target whether you aim at the picture or at the label.
+   The card itself is the link (js/item-link.js), so the pill is a
+   decorative affordance: aria-hidden, no nested interactive node, and
+   it inherits the card's pointer cursor. The row button deepens to red
+   on hover and both arrows nudge right, so the affordance behaves the
+   same at both levels.
+   ===================================================================== */
+body.home .row-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 24px;
+  border-radius: 999px;
+  background: var(--navy-deep);
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  transition: background 0.22s ease, box-shadow 0.22s ease;
+}
+
+body.home .row-more .arw,
+body.home .see-more .arw {
+  display: inline-block;
+  transition: transform 0.22s ease;
+}
+
+body.home .row-more:hover,
+body.home .row-more:focus-visible {
+  background: var(--red);
+  box-shadow: 0 8px 18px rgba(200, 16, 46, 0.22);
+}
+
+body.home .row-more:hover .arw,
+body.home .row-more:focus-visible .arw,
+body.home .sub-item:hover .see-more .arw,
+body.home .sub-item:focus-visible .see-more .arw { transform: translateX(4px); }
+
+body.home .see-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 999px;
+  background: var(--red);
+  color: var(--white);
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  transition: background 0.22s ease, box-shadow 0.22s ease;
+}
+
+body.home .sub-item:hover .see-more,
+body.home .sub-item:focus-visible .see-more {
+  background: #a60d26;
+  box-shadow: 0 8px 18px rgba(200, 16, 46, 0.20);
+}
+
+/* Narrow screens: the title and its button stop sharing one line. */
+@media (max-width: 860px) {
+  body.home .row-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
 }
