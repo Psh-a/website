@@ -21,7 +21,6 @@
   display: block;
 }
 
-/* --- The Awakening additions --- */
 .stats-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -56,7 +55,6 @@
   font-size: 15px;
 }
 
-/* --- 媒体小标题（居中细字 + 两侧短线） --- */
 .media-cap {
   display: flex;
   align-items: center;
@@ -77,7 +75,6 @@
   background: rgba(30, 64, 124, 0.25);
 }
 
-/* --- Creative Expressions 最终版：参考 creative.html 版式骨架（配色沿用本站） --- */
 :root { --tint: #eef2f9; --line-blue: rgba(30, 64, 124, 0.18); }
 
 .section { padding: 84px 0; border-bottom: 1px solid var(--line-blue); }
@@ -128,10 +125,8 @@
 }
 .media-wide { margin-top: 30px; }
 
-/* 限宽居中的媒体（如 Click and Play 上方的入口截图） */
 .media-center { max-width: 780px; margin-left: auto; margin-right: auto; }
 
-/* 竖版媒体（证书等 A4 比例），限窄居中避免过高 */
 .media-portrait { max-width: 460px; margin-left: auto; margin-right: auto; }
 
 .media-duo {
@@ -175,7 +170,6 @@
   .media-duo { grid-template-columns: minmax(0, 1fr); gap: 26px; }
 }
 
-/* --- Drama image row: three square stills inline with text --- */
 .trio-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -188,11 +182,6 @@
   .trio-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
 }
 
-/* --- 02 Drama: editorial treatment -------------------------------------
-   (a) narrative copy runs the same measure as the media rows, so the
-       left and right edges of text and photos line up exactly
-   (b) record cards: two white cards side by side, each = photo + its copy
-   ---------------------------------------------------------------------- */
 #drama > .cx-wrap > p { max-width: none; }
 
 .rec-set {
@@ -214,7 +203,7 @@
 .rec-panel .rec-media { margin: 0 0 24px; }
 .rec-panel .rec-media img { width: 100%; height: auto; display: block; }
 .rec-panel-doc .rec-media { max-width: 240px; margin-left: auto; margin-right: auto; }
-/* first block of 02: the three musical stills sit on the same white card */
+
 .rec-panel-scene { margin: 0; padding: 30px 30px 34px; }
 .rec-panel-scene p { margin: 0; }
 .rec-panel-scene .trio-grid { margin-top: 28px; }
@@ -245,7 +234,7 @@
   color: var(--red);
 }
 .award-panel .media-duo { margin-top: 0; }
-/* a lone media block under the label (soviet-theme.html) */
+
 .award-panel > .media { margin-top: 0; }
 
 @media (max-width: 860px) {
@@ -253,7 +242,6 @@
   .award-panel .media-duo { gap: 16px; }
 }
 
-/* --- header nav carrying the page's own section titles ------------------ */
 .site-nav.nav-sections { gap: 4px; flex-wrap: nowrap; justify-content: flex-end; }
 .site-nav.nav-sections a { font-size: 14.5px; padding: 7px 13px; white-space: nowrap; }
 .section[id] { scroll-margin-top: 92px; }
@@ -265,14 +253,8 @@
   .site-nav.nav-sections { display: none; }
 }
 
-/* =====================================================================
-   creative-expressions.html only — type scale one step up + page header
-   Everything below is scoped with body.cx so the other pages keep their
-   current sizes.
-   ===================================================================== */
 body.cx { font-size: 17.5px; line-height: 1.72; }
 
-/* --- header: brand + page tag --------------------------------------- */
 body.cx .brand { font-size: 20px; }
 body.cx .brand-tag {
   margin: 0 0 0 14px;
@@ -287,11 +269,6 @@ body.cx .brand-tag {
 body.cx .site-nav.nav-sections { margin-left: auto; }
 body.cx .site-nav.nav-sections a { font-size: 14.5px; }
 
-/* The five full section titles plus brand and tag no longer fit on one
-   line on most screens, so the header is allowed to wrap: brand + tag on
-   the first line, the section nav on a second line below it. The auto
-   right margin on the tag keeps brand and tag grouped on the left and
-   pushes the nav to the right edge whenever everything fits on one line. */
 body.cx .site-header .container {
   height: auto;
   min-height: 64px;
@@ -301,9 +278,7 @@ body.cx .site-header .container {
   padding: 9px 24px 10px;
 }
 body.cx .section[id] { scroll-margin-top: 118px; }
-/* soviet-theme.html's nav is shorter, so its header stays on one line at
-   desktop widths (67px instead of creative's taller two-line header). The
-   118px offset would leave a visible gap above every section. */
+
 body.sov .section[id] { scroll-margin-top: 88px; }
 
 @media (max-width: 1230px) { body.cx .site-nav.nav-sections a { font-size: 13.5px; } }
@@ -313,19 +288,8 @@ body.sov .section[id] { scroll-margin-top: 88px; }
   body.cx .brand-tag { margin-left: 10px; padding-left: 12px; font-size: 13px; }
 }
 
-/* --- header ---------------------------------------------------------- */
-/* style.css paints a 3px red rule under the header. The home page dropped it
-   long ago - the nav carries a red underline on the active item instead - so
-   the same goes here, keeping the header band clean on every subpage. */
 .site-header { border-bottom: 0; }
 
-/* --- page hero ------------------------------------------------------- */
-/* The white ground, the dropped red rule and the home page type scale are no
-   longer scoped per page - they live on the plain .page-hero rules in
-   style.css, so every subpage inherits them (creative, soviet, defying-gravity
-   and the-awakening alike) with no overrides needed here. */
-
-/* --- section heads and blocks --------------------------------------- */
 body.cx .section-num { font-size: clamp(46px, 5.2vw, 76px); }
 body.cx .section-title { font-size: clamp(29px, 3.7vw, 49px); }
 body.cx .media-cap { font-size: 13.5px; }
@@ -333,13 +297,11 @@ body.cx .media-caption { font-size: 14.5px; }
 body.cx .award-label { font-size: 13.5px; }
 body.cx .btn { font-size: 16px; }
 
-/* --- side rail + footer --------------------------------------------- */
 body.cx .side-rail .rail-chip { font-size: 14px; }
 body.cx .side-rail .rail-live { font-size: 15px; }
 body.cx .site-footer .brand { font-size: 18px; }
 body.cx .footer-note { font-size: 15px; }
 
-/* --- section numbers as red squares (2026-09-19) --------------------- */
 body.cx .section-head { gap: 22px; }
 body.cx .section-num {
   font-size: clamp(27px, 3.1vw, 39px);
@@ -353,16 +315,13 @@ body.cx .section-num {
   border-radius: 0.32em;
 }
 
-/* --- nav marker follows the section being read (nav-spy.js) ---------- */
 body.cx .site-nav.nav-sections a {
   padding: 8px 15px;
   border-radius: 0;
   font-weight: 600;
   position: relative;
 }
-/* Active marker: a red rule under the label. Drawn as a pseudo element so
-   switching items never changes the box size — this header is allowed to
-   wrap, and any reflow would shift the whole page. */
+
 body.cx .site-nav.nav-sections a.active {
   color: var(--white);
   background: transparent;
@@ -377,12 +336,6 @@ body.cx .site-nav.nav-sections a.active::after {
   background: var(--red);
 }
 
-/* --- inner headings + opening copy (defying-gravity, the-awakening) --- */
-/* Those two pages carry more material than one numbered band can hold, so a
-   few old sub-sections were merged under a single head. This is the step-down
-   heading for a merged group: one size below .section-title, no number, and a
-   short red rule on the left so it still reads as part of the same family.
-   Only these two pages use the class, so the scope is just a safeguard. */
 body.cx .sub-head {
   margin: 48px 0 18px;
   padding-left: 16px;
@@ -394,15 +347,8 @@ body.cx .sub-head {
   color: var(--navy);
 }
 
-/* the-awakening.html opens with two framing paragraphs before the first
-   numbered band. No head there, so the block only needs top spacing and no
-   rule of its own. */
 body.cx .section-intro { padding: 72px 0 0; border-bottom: 0; }
 
-/* soviet-theme.html swaps the hero summary card for a directory of the four
-   sub-projects. Same card chrome as the old .lede (pale ground, hairline box,
-   red rule on the left); rows carry the section numbers so the list reads as
-   an extension of the numbered bands below. Only this page uses the class. */
 body.cx .hero-toc {
   margin: 26px auto 0;
   max-width: 760px;
@@ -444,11 +390,6 @@ body.cx .hero-toc a:hover .toc-title {
   text-underline-offset: 3px;
 }
 
-/* --- fixed badges (back to top / back to index) ---
-   On wide viewports both badges ride just outside the reading column instead
-   of pinning to the window edge: 50% - 580px (half of .cx-wrap's 1160px) -
-   28px (its gutter) = right edge of the copy, minus the badge (46px) and a
-   114px breather. Narrower viewports fall back to the original 28px. */
 body.cx { --badge-x: max(28px, calc(50% - 580px + 28px - 160px)); }
 
 body.cx .back-top { right: var(--badge-x); }
@@ -486,13 +427,6 @@ body.cx .back-home:focus-visible {
   body.cx .back-home svg { width: 20px; height: 20px; }
 }
 
-/* --- 01 Preserving Ancient Trees: photo beside its copy ----------------
-   The lead shot of the funded report reads as a spread: the photo keeps the
-   left column, its caption moves up beside it instead of sitting underneath.
-   Below that, the three portraits of individual trees run side by side so the
-   damage done to each one can be compared at a glance; the tree each portrait
-   is about leads its caption in a darker ink. Both patterns are used on this
-   page only, hence the #ancient-trees scope. */
 body.cx .media-side {
   display: grid;
   grid-template-columns: minmax(0, 1.18fr) minmax(0, 1fr);
@@ -508,7 +442,7 @@ body.cx .media-side > img {
   border-radius: 10px;
   background: var(--white);
 }
-/* the caption drops its card chrome — it stands beside the photo, not under it */
+
 body.cx .media-side .media-caption {
   padding: 0;
   border-top: 0;
@@ -525,30 +459,11 @@ body.cx #ancient-trees .trio-grid .media-caption strong {
   body.cx #ancient-trees .trio-grid .media { max-width: 460px; margin-left: auto; margin-right: auto; }
 }
 
-/* --- 03 the fundraising photos, side by side ----------------------------
-   Same three-across row as the tree portraits in 01, so the campaign stats,
-   the team poster and the Tencent Philanthropy front page read as one story
-   instead of three stacked slabs. The three files sit within 0.8% of the
-   same 0.82 ratio, so their captions land on a common line with no cropping.
-   Below 980px the row folds back to one column and .media-portrait's own
-   460px measure takes over again. */
 body.cx #fundraising .trio-grid { margin-top: 34px; }
 @media (max-width: 980px) {
   body.cx #fundraising .trio-grid { grid-template-columns: minmax(0, 1fr); gap: 22px; }
 }
 
-/* --- 01 the funded report, embedded as a readable PDF ------------------
-   The frame itself is cut to the shape of one A4 sheet (210:297) so a single
-   page fills it exactly - no half page, no sliver of the page below. Its
-   height caps at 78vh, which keeps a whole page on screen, and the width
-   follows from the ratio; the plain link underneath is the fallback for
-   browsers that will not render a PDF inside an iframe (iOS Safari shows the
-   first page only).
-   The line introducing the report reads as a standfirst: a red rule on the
-   left of the copy and bold navy type. It is dressed as a sibling of .sub-head
-   (same clamp, weight, leading and tracking) and sits flush with the left edge
-   of the column, so the two read as one family. The rule stretches to the
-   height of the copy it stands beside. */
 body.cx .report-lead {
   display: flex;
   align-items: center;
@@ -570,8 +485,7 @@ body.cx .report-lead::before {
   background: var(--red);
 }
 body.cx .media-pdf {
-  /* the frame wraps the A4-shaped viewer, so the card border hugs one sheet
-     instead of stretching across the whole column */
+
   width: fit-content;
   max-width: 100%;
   margin-left: auto;
@@ -587,8 +501,7 @@ body.cx .media-pdf .pdf-view {
   background: var(--tint);
 }
 body.cx .media-pdf .pdf-bar { text-align: right; }
-/* the fallback link wears the same navy bold type as before, but the rule
-   under the words becomes a hairline oval wrapped around the whole label */
+
 body.cx .media-pdf .pdf-bar a {
   display: inline-block;
   padding: 9px 22px;
@@ -608,7 +521,6 @@ body.cx .media-pdf .pdf-bar a:hover {
 @media (max-width: 760px) {
   body.cx .media-pdf .pdf-view { --pdf-h: min(900px, 64vh); }
   body.cx .report-lead { gap: 14px; }
-  /* the oval keeps its stadium ends on the narrower card, so the label simply
-     steps in instead of running into the curve */
+
   body.cx .media-pdf .pdf-bar a { padding: 8px 16px; }
 }

@@ -72,9 +72,6 @@ a { color: inherit; text-decoration: none; }
   background: var(--red);
 }
 
-/* Two knobs drive the whole band: the width of the centred content box and the
-   gap between photo and copy. The photo layer reads both, so it stays locked
-   to the same box the grid uses at every viewport width. */
 .hero {
   --hero-box: 1420px;
   --hero-gap: 56px;
@@ -99,9 +96,6 @@ a { color: inherit; text-decoration: none; }
   z-index: 2;
 }
 
-/* The copy column is sized so the photo column - and therefore the photo layer
-   behind it - comes out much larger than a thumbnail, while the two halves stay
-   shoulder to shoulder inside one centred box. */
 .hero-inner {
   display: grid;
   grid-template-columns: minmax(0, 1.38fr) minmax(0, 1fr);
@@ -110,8 +104,6 @@ a { color: inherit; text-decoration: none; }
   max-width: var(--hero-box);
 }
 
-/* The photo is out of flow, so the copy has to be told to take the second
-   column explicitly - otherwise it snaps into the first one. */
 .hero-text {
   position: relative;
   z-index: 1;
@@ -119,11 +111,6 @@ a { color: inherit; text-decoration: none; }
   width: 100%;
 }
 
-/* Pinned to the left edge of that same content box and stretched over the full
-   height of the band, so the portrait keeps the big-plate weight it had when it
-   hugged the window edge - it is just anchored to the copy's box now, a gap
-   away from the text, instead of running off to the far left. Only the right
-   edge is feathered, so the face itself stays sharp. */
 .hero-photo {
   position: absolute;
   top: 0;
@@ -368,10 +355,6 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.8;
 }
 
-/* Subpage hero band, centred. Same white ground as the home page hero, and it
-   borrows that band's two framing devices: the intro copy sits in the same pale
-   card with a red edge the home page uses, and the headline is stepped up a
-   size so it carries the whole band. */
 .page-hero {
   background: var(--white);
   color: var(--ink);
@@ -397,9 +380,6 @@ a { color: inherit; text-decoration: none; }
   max-width: 980px;
 }
 
-/* The copy wears the home page's card: pale ground, hairline box, red rule
-   down its left edge. Centred text would fight the justified column, so the
-   card keeps the home page's justification. */
 .page-hero .lede {
   margin: 26px auto 0;
   max-width: 760px;
@@ -455,10 +435,7 @@ a { color: inherit; text-decoration: none; }
 
 .back-top {
   position: fixed;
-  /* On wide screens the badge sits just outside the content column instead of
-     hugging the window edge: 50% - (--max-width / 2) - the container gutter
-     (24px) = right edge of the content, minus the badge (46px) and a 114px
-     breather. Below that width max() falls back to the original 28px. */
+
   right: max(28px, calc(50% - var(--max-width) / 2 + 24px - 160px));
   bottom: 28px;
   z-index: 999;
@@ -489,14 +466,6 @@ a { color: inherit; text-decoration: none; }
   z-index: 1;
 }
 
-/* Both rails ride 100px in from their window edge on every page (index and
-   the four subpages share this). The term before the cap keeps them clear of
-   the reading column on displays that are only just wide enough to show the
-   rails at all: --rail-col is half of the page column (index .container =
-   1480/2 = 740px, subpages .cx-wrap = 1160/2 = 580px) and 92px is the rails'
-   widest element (the hairline; the index list's active rule is only 64px),
-   so rail content never crosses the column's border box. Narrow displays
-   fall back to near-flush, wide displays get the full 100px. */
 .side-rail { --rail-col: 740px; }
 body.cx .side-rail { --rail-col: 580px; }
 
@@ -507,7 +476,6 @@ body.cx .side-rail { --rail-col: 580px; }
   right: clamp(4px, calc(50% - var(--rail-col) - 92px), 100px);
 }
 
-/* 装饰栏定位在文档流中：由 js/rail.js 按顶部 hero 与 footer 之间的浅色区域一次性定位——进入页面即完整显示，随后随页面一起滚动；深蓝区域（header / hero / footer）内不出现。 */
 .side-rail .rail-inner {
   position: sticky;
   top: 140px;
@@ -568,15 +536,6 @@ body.cx .side-rail { --rail-col: 580px; }
 
 .side-rail-left .rail-mark { transform: rotate(180deg); }
 
-/* Index page: the right rail is a numbered table of contents that mirrors the
-   header nav (01 About -> 05 Social Impact). Each entry is a two-digit number
-   over a hairline rule; the current section turns red and its rule thickens.
-   The rule is drawn as a top border on a fixed 6px-tall box, so switching the
-   active entry changes weight without nudging the entries below it. The rail
-   itself stays pointer-events:none - only the links opt back in.
-   The list is scaled to sit level with the decorative column on the left:
-   5 entries total 508px here against 507px there (see the >=1968 band for the
-   matching 532px variant). */
 .side-rail .rail-index {
   display: flex;
   flex-direction: column;
@@ -667,8 +626,7 @@ body.cx .side-rail { --rail-col: 580px; }
   .side-rail .rail-live { font-size: 14px; }
   .side-rail .rail-idx i { width: 10px; height: 10px; }
   .side-rail .rail-idx i.is-on { width: 18px; }
-  /* the left decorative column grows here (hair 116px, 22px gaps, 532px tall),
-     so the numbered list on the right grows with it: 534px. */
+
   .side-rail .rail-index { gap: 66px; }
   .side-rail .rail-index a { gap: 18px; }
   .side-rail .rail-i-num { font-size: 30px; }
@@ -687,8 +645,7 @@ body.cx .side-rail { --rail-col: 580px; }
   .project-row { padding: 32px 24px 36px; }
   .hero-inner { grid-template-columns: 1fr; gap: 24px; }
   .hero-text { grid-column: auto; margin-left: 0; width: 100%; }
-  /* Small screens drop the overlap: the portrait returns to being a normal
-     block above the copy, uncropped and without the feather. */
+
   .hero-photo {
     position: relative;
     left: auto;
@@ -710,14 +667,6 @@ body.cx .side-rail { --rail-col: 580px; }
   .site-footer .container { flex-direction: column; text-align: center; }
 }
 
-/* =====================================================================
-   index.html only (body.home)
-   The header used to carry a full-width red rule along its bottom edge.
-   That rule is gone on the home page; the red now marks the nav item of
-   the section currently being read, exactly like the subpages do.
-   js/nav-spy.js sets .active; the marker is a pseudo element so switching
-   items never changes the box size.
-   ===================================================================== */
 body.home .site-header { border-bottom: 0; }
 
 body.home .site-nav a { position: relative; }
@@ -736,17 +685,6 @@ body.home .site-nav a.active::after {
   background: var(--red);
 }
 
-/* =====================================================================
-   index.html only (body.home) — project entry buttons
-   Every project row carries one primary button into that row's subpage;
-   every sub-item repeats the same jump as a red pill, so the card reads
-   as a single target whether you aim at the picture or at the label.
-   The card itself is the link (js/item-link.js), so the pill is a
-   decorative affordance: aria-hidden, no nested interactive node, and
-   it inherits the card's pointer cursor. The row button deepens to red
-   on hover and both arrows nudge right, so the affordance behaves the
-   same at both levels.
-   ===================================================================== */
 body.home .row-more {
   display: inline-flex;
   align-items: center;
@@ -801,7 +739,6 @@ body.home .see-more:focus-visible {
   box-shadow: 0 8px 18px rgba(200, 16, 46, 0.20);
 }
 
-/* Narrow screens: the title and its button stop sharing one line. */
 @media (max-width: 860px) {
   body.home .row-head {
     flex-direction: column;

@@ -7,8 +7,6 @@
     const href = item.getAttribute("data-href");
     if (!href) return;
 
-    // Only the "See more" pill opens the sub-page. The photo and the copy
-    // stay inert, so a stray click no longer navigates away.
     const trigger = item.querySelector(".see-more");
     if (!trigger) return;
     trigger.classList.add("is-clickable");
