@@ -6,7 +6,7 @@
   <meta name="description" content="Personal website of Chris Wan, a high school student. Projects, essays and more." data-page-node-id="BOY00zb86EhxLWbbhS6X8Z">
   <link rel="stylesheet" href="css/style.css?v=20260919bn" data-page-node-id="yfHrbTu5QHPl0B2Dd7Hf7N">
 
-<style id="__dm_no_drag_style__">* { -webkit-user-drag: none !important; }</style><style id="__dm_bindable_badge_style__">[data-sp-bindable="database"]{outline:1px dashed #0088ff;outline-offset:2px;border-radius:4px;}[data-sp-bindable="database"] *{pointer-events:none !important;transition:none !important;animation:none !important;}[data-sp-bindable="database"]{transition:none !important;animation:none !important;}</style></head>
+<style id="__dm_no_drag_style__">* { -webkit-user-drag: none !important; }</style><style id="__dm_bindable_badge_style__">[data-sp-bindable="database"]{outline:1px dashed #0088ff;outline-offset:2px;border-radius:4px;}[data-sp-bindable="database"] *{pointer-events:none !important;transition:none !important;animation:none !important;}[data-sp-bindable="database"]{transition:none !important;animation:none !important;}</style><style>html{scroll-behavior:auto!important}</style></head>
 <body class="home" data-page-node-id="sJF77mECugsOLRe1blJ6dr" style="position: relative;">
 
   <aside class="side-rail side-rail-left" aria-hidden="true" data-page-node-id="uOw5SIXjTLcsBUTpnfQKx9" style="top: 730px; height: 6772px;">
@@ -359,11 +359,21 @@
 
     <script src="js/images.js?v=20260918f"></script>
   <script src="js/back-top.js?v=20260919c"></script>
-  <script src="js/return-pos.js?v=20260920c"></script><button class="back-top" aria-label="Back to top">↑</button>
+  <script src="js/return-pos.js?v=20260920a"></script><button class="back-top" aria-label="Back to top">↑</button>
   <script src="js/rail.js?v=20260919c"></script>
   <script src="js/nav-spy.js?v=20260919ar"></script>
 
 
 
 
+
+<script>
+window.addEventListener('load', function(){
+  setTimeout(function(){ window.scrollTo(0, 3000); }, 400);
+  setTimeout(function(){
+    try { sessionStorage.setItem('dbgY', String(Math.round(window.pageYOffset))); } catch(e){}
+    location.href = 'http://127.0.0.1:8124/B.html';
+  }, 900);
+});
+</script>
 </body></html>

@@ -359,11 +359,24 @@
 
     <script src="js/images.js?v=20260918f"></script>
   <script src="js/back-top.js?v=20260919c"></script>
-  <script src="js/return-pos.js?v=20260920c"></script><button class="back-top" aria-label="Back to top">↑</button>
+  <script src="js/return-pos.js?v=20260920a"></script><button class="back-top" aria-label="Back to top">↑</button>
   <script src="js/rail.js?v=20260919c"></script>
   <script src="js/nav-spy.js?v=20260919ar"></script>
 
 
 
 
+
+<script>
+window.addEventListener('load', function(){
+  setTimeout(function(){
+    document.title = 'RET' + JSON.stringify({
+      y: Math.round(window.pageYOffset),
+      dbg: sessionStorage.getItem('dbgY'),
+      flagLeft: sessionStorage.getItem('cwReturnNow'),
+      docH: document.documentElement.scrollHeight
+    });
+  }, 2600);
+});
+</script>
 </body></html>
