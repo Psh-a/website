@@ -746,3 +746,11 @@ body.home .see-more:focus-visible {
     gap: 16px;
   }
 }
+
+.footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+
+.footer-version { font-size: 12px; opacity: 0.6; }
+
+@media (max-width: 667px) {
+  .footer-right { align-items: center; }
+}
