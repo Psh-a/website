@@ -135,6 +135,7 @@
   gap: 26px;
   align-items: start;
   margin-top: 34px;
+  margin-bottom: 34px;
 }
 .media-duo .media { margin-top: 0; }
 
@@ -337,7 +338,7 @@ body.cx .site-nav.nav-sections a.active::after {
 }
 
 body.cx .sub-head {
-  margin: 48px 0 18px;
+  margin: 100px 0 18px;
   padding-left: 16px;
   border-left: 4px solid var(--red);
   font-size: clamp(21px, 2.2vw, 28px);
@@ -468,7 +469,7 @@ body.cx .report-lead {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin: 44px 0 22px;
+  margin: 100px 0 22px;
   color: var(--navy);
   font-size: clamp(21px, 2.2vw, 28px);
   font-weight: 800;
@@ -553,7 +554,7 @@ body.cx .paper-title {
   align-items: center;
   gap: 16px;
   max-width: 980px;
-  margin: 44px 0 18px;
+  margin: 100px 0 18px;
   text-align: left;
   font-size: clamp(21px, 2.2vw, 28px);
   font-weight: 800;
@@ -688,4 +689,37 @@ body.cx #service-hearts .swh-split-cap strong {
 @media (max-width: 760px) {
   body.cx #service-hearts .swh-split { grid-template-columns: 1fr; }
   body.cx #service-hearts .swh-split-cap { margin-top: 16px; text-align: left; }
+}
+
+/* 01 章三张树照的图注卡等高：figure 拉伸到同一行高，题注撑满剩余空间 */
+body.cx #ancient-trees .trio-grid { align-items: stretch; }
+body.cx #ancient-trees .trio-grid .media {
+  display: flex;
+  flex-direction: column;
+}
+body.cx #ancient-trees .trio-grid .media-caption { flex: 1; }
+
+/* 04 章服务之心两卡题注等高：卡片拉伸同高，题注撑满剩余空间 */
+body.cx #service-hearts .swh-top { align-items: stretch; }
+body.cx #service-hearts .swh-top .media {
+  display: flex;
+  flex-direction: column;
+}
+body.cx #service-hearts .swh-top .media-caption { flex: 1; }
+
+/* 05 章 NextGen 两图统一比例（以右图 1702x1276 为准），裁切对齐 */
+body.cx #nextgen .media-duo img {
+  aspect-ratio: 1702 / 1276;
+  object-fit: cover;
+  height: auto;
+}
+
+/* 图片后紧跟的段落补间距：.media 无下边距 + 全局 reset 清零段落上边距，避免文字贴图 */
+body.cx .media + p {
+  margin-top: 34px;
+}
+
+/* award-panel 无下边距导致面板后文字贴卡，补 34px */
+.award-panel {
+  margin-bottom: 34px;
 }

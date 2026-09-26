@@ -428,12 +428,7 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.3;
 }
 
-.sub-body p {
-  font-size: 18.5px;
-  color: var(--muted);
-  margin-bottom: 20px;
-  text-align: justify;
-}
+.sub-body p { font-size: 18.5px; color: var(--muted); margin-bottom: 20px; }
 
 .sub-feature .sub-body h4 {
   font-size: clamp(30px, 3.4vw, 38px);

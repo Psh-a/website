@@ -3,10 +3,6 @@
   const rails = Array.from(document.querySelectorAll(".side-rail"));
   if (!rails.length) return;
 
-  const counter = document.querySelector(".side-rail-right .rail-num");
-  const live = document.querySelector(".side-rail-right .rail-live");
-  const dots = Array.from(document.querySelectorAll(".side-rail-right .rail-idx i"));
-
   const indexLinks = Array.from(document.querySelectorAll(".side-rail-right .rail-index a"));
   const sections = indexLinks.length
     ? indexLinks.map(function (a) { return document.querySelector(a.getAttribute("href")); })
@@ -16,10 +12,6 @@
   const footer = document.querySelector(".site-footer");
   let ticking = false;
 
-  function pad(n) {
-    return (n < 10 ? "0" : "") + n;
-  }
-
   function docTop(el) {
     let y = 0;
     while (el) {
@@ -27,17 +19,6 @@
       el = el.offsetParent;
     }
     return y;
-  }
-
-  function labelOf(section) {
-    const title = section.querySelector(".row-title");
-    if (!title) return "";
-    const text = title.textContent
-      .replace(/\s+/g, " ")
-      .replace(/^\s*\d+\s*\.\s*/, "")
-      .trim();
-    if (!text) return "";
-    return text.length > 12 ? text.split(" ")[0] : text;
   }
 
   const RAIL_TOP_GAP = 60;
@@ -65,11 +46,6 @@
 
     if (!current && sections.length) current = 1;
 
-    if (counter) counter.textContent = pad(current);
-    if (live) live.textContent = current ? labelOf(sections[current - 1]) : "Overview";
-    dots.forEach(function (dot, i) {
-      dot.classList.toggle("is-on", i === current - 1);
-    });
     indexLinks.forEach(function (a, i) {
       a.classList.toggle("is-on", i === current - 1);
     });

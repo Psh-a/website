@@ -280,6 +280,7 @@ a { color: inherit; text-decoration: none; }
   margin-top: 132px;
 }
 
+/* 项目卡片之间的红色分隔线 */
 .project-row + .project-row::before {
   content: "";
   position: absolute;
@@ -294,6 +295,7 @@ a { color: inherit; text-decoration: none; }
 
 .project-row:nth-of-type(even) { background: #eef2f9; }
 
+/* 02/04 卡区通栏色带（#eef2f9）：从上下两条红线处分界，两侧留白一并着色 */
 .project-row:nth-of-type(even)::after {
   content: "";
   position: absolute;
@@ -428,12 +430,7 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.3;
 }
 
-.sub-body p {
-  font-size: 18.5px;
-  color: var(--muted);
-  margin-bottom: 20px;
-  text-align: justify;
-}
+.sub-body p { font-size: 18.5px; color: var(--muted); margin-bottom: 20px; }
 
 .sub-feature .sub-body h4 {
   font-size: clamp(30px, 3.4vw, 38px);
@@ -468,6 +465,21 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.1;
   margin: 12px auto 0;
   max-width: 980px;
+}
+
+.page-hero .lede {
+  margin: 26px auto 0;
+  max-width: 760px;
+  padding: 26px 30px;
+  background: var(--paper);
+  border: 1px solid rgba(30, 64, 124, 0.12);
+  border-left: 3px solid var(--red);
+  border-radius: 12px;
+  color: var(--muted);
+  font-size: 19.5px;
+  line-height: 1.7;
+  text-align: justify;
+  hyphens: auto;
 }
 
 .stat {
@@ -654,6 +666,40 @@ body.cx .side-rail { --rail-col: 580px; }
   border-top-color: var(--red);
 }
 
+.side-rail .rail-live {
+  writing-mode: vertical-rl;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--rail-accent);
+  opacity: 0.95;
+}
+
+.side-rail .rail-idx {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 9px;
+  margin-top: 2px;
+}
+
+.side-rail .rail-idx i {
+  display: block;
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--rail-line);
+  opacity: 0.45;
+}
+
+.side-rail .rail-idx i.is-on {
+  width: 16px;
+  background: var(--rail-accent);
+  border-color: var(--rail-accent);
+  opacity: 1;
+}
+
 @media (min-width: 1700px) {
   .side-rail { display: block; }
 }
@@ -664,6 +710,9 @@ body.cx .side-rail { --rail-col: 580px; }
   .side-rail .rail-chip { font-size: 13px; }
   .side-rail .rail-dot { width: 10px; height: 10px; }
   .side-rail .rail-mark { -webkit-text-stroke-width: 2px; }
+  .side-rail .rail-live { font-size: 14px; }
+  .side-rail .rail-idx i { width: 10px; height: 10px; }
+  .side-rail .rail-idx i.is-on { width: 18px; }
 
   .side-rail .rail-index { gap: 66px; }
   .side-rail .rail-index a { gap: 18px; }
