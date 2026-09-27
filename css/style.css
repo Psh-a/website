@@ -53,6 +53,8 @@ a { color: inherit; text-decoration: none; }
   font-weight: 700;
   font-size: 19px;
   letter-spacing: 0.02em;
+  /* 右移 148px：brand 文字中心与 hero 照片中心对齐（宽屏恒成立） */
+  margin-left: 148px;
 }
 
 .brand span { color: var(--red-soft); }

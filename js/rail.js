@@ -9,6 +9,8 @@
     : Array.from(document.querySelectorAll("#part1, #part2, #part3, #part4"));
 
   const topZone = document.querySelector(".hero, .page-hero");
+  // index 独有：hero 下的全宽分层色带（.hero-fade），导轨需从色带之下的白色区域开始
+  const topFade = document.querySelector(".hero-fade");
   const footer = document.querySelector(".site-footer");
   let ticking = false;
 
@@ -23,7 +25,9 @@
 
   const RAIL_TOP_GAP = 60;
   function placeRail() {
-    const lightTop = topZone ? docTop(topZone) + topZone.offsetHeight + RAIL_TOP_GAP : 0;
+    const lightTop = topZone
+      ? docTop(topZone) + topZone.offsetHeight + (topFade ? topFade.offsetHeight : 0) + RAIL_TOP_GAP
+      : 0;
     const lightBottom = footer ? docTop(footer) : document.documentElement.scrollHeight;
     const h = Math.max(0, lightBottom - lightTop);
     rails.forEach(function (rail) {
