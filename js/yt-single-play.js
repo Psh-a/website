@@ -1,35 +1,32 @@
-/* 同一时间只允许一个 YouTube 视频播放：
-   监听 embed iframe 的 infoDelivery 消息，任一视频进入 PLAYING(1) 时，
-   向其余 YouTube iframe 发送 pauseVideo 命令。
-   纯 postMessage 实现：不插入/替换任何 DOM 元素，依赖 iframe src 带 enablejsapi=1。 */
+/* 同一时间只允许一个 YouTube 视频播放（同页面内）。
+   官方 IFrame Player API 方案：用页面里已有的 <iframe> 构建播放器（不插入/替换 DOM），
+   任一播放器进入 PLAYING 时暂停其余播放器。
+   依赖：各页面在标记里先加载 https://www.youtube.com/iframe_api，iframe src 带 enablejsapi=1。 */
 (function () {
-  var YT_MSG_ORIGIN = 'https://www.youtube.com';
+  var frames = Array.prototype.slice.call(document.querySelectorAll('iframe[src*="youtube.com/embed"]'));
+  if (!frames.length) return;
 
-  function ytFrames() {
-    return Array.prototype.slice.call(document.querySelectorAll('iframe[src*="youtube.com/embed"]'));
-  }
-
-  function pauseOthers(current) {
-    ytFrames().forEach(function (f) {
-      if (f === current || !f.contentWindow) return;
-      f.contentWindow.postMessage(JSON.stringify({
-        event: 'command',
-        func: 'pauseVideo',
-        args: []
-      }), '*');
-    });
-  }
-
-  window.addEventListener('message', function (e) {
-    if (e.origin !== YT_MSG_ORIGIN) return;
-    var data;
-    try { data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch (err) { return; }
-    if (!data || data.event !== 'infoDelivery' || !data.info) return;
-    if (data.info.playerState === 1) {
-      var src = e.source;
-      var current = null;
-      ytFrames().forEach(function (f) { if (f.contentWindow === src) current = f; });
-      if (current) pauseOthers(current);
-    }
+  frames.forEach(function (f, i) {
+    if (!f.id) f.id = 'ytsp-' + i;
   });
+
+  var players = [];
+  window.__ytSinglePlay = players; /* 调试句柄 */
+
+  window.onYouTubeIframeAPIReady = function () {
+    frames.forEach(function (f) {
+      var p;
+      try { p = new YT.Player(f.id); } catch (err) { return; }
+      players.push(p);
+      p.addEventListener('onStateChange', function (e) {
+        if (e.data !== YT.PlayerState.PLAYING) return;
+        players.forEach(function (o) {
+          if (o === p || typeof o.getPlayerState !== 'function') return;
+          try {
+            if (o.getPlayerState() === YT.PlayerState.PLAYING) o.pauseVideo();
+          } catch (err) { /* 跨域或未就绪时忽略 */ }
+        });
+      });
+    });
+  };
 })();

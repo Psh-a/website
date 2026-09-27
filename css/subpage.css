@@ -125,6 +125,13 @@
 }
 .media-wide { margin-top: 30px; }
 
+/* defying 03 章：ground-break（横 970×545）与轮椅竖图（810×1080）并排，
+   列宽按长宽比 1.78:0.75 配平，两图高度自然一致、无需裁切 */
+body.cx #ant-hole .dg-crash-duo {
+  grid-template-columns: minmax(0, 1.78fr) minmax(0, 0.75fr);
+  margin-top: 30px;
+}
+
 .media-center { max-width: 780px; margin-left: auto; margin-right: auto; }
 
 .media-portrait { max-width: 460px; margin-left: auto; margin-right: auto; }
@@ -946,6 +953,13 @@ body.sov #jokes .sub-head {
   letter-spacing: -0.01em;
   color: var(--navy);
 }
-body.sov #jokes .bts-trio { margin-top: 76px; }
+body.sov #jokes .bts-trio {
+  margin-top: 76px;
+  grid-template-columns: minmax(0, 1fr);
+}
+body.sov #jokes .bts-trio .media {
+  max-width: 520px;
+  margin: 0 auto;
+}
 body.sov #jokes .bts-eagle { margin-top: 76px; }
 body.sov #jokes .sub-head + .jokes-card { margin-top: 30px; }
