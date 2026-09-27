@@ -905,3 +905,47 @@ body.sov #jokes .jokes-note {
   body.sov #jokes .jokes-photo-left img { height: auto; }
   body.sov #jokes .jokes-note { margin: 14px 4px 4px; text-align: left; }
 }
+
+/* creative 01 章 gaming：第三图（入口截图）上方游戏名标题条（方案 A）：眉标+大标题+红色短线，居中 */
+body.cx #gaming .game-title-block {
+  text-align: center;
+  margin-top: 50px;
+}
+body.cx #gaming .gt-eyebrow {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 10px;
+}
+body.cx #gaming .gt-title {
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--navy-deep);
+  line-height: 1.15;
+  margin: 0 0 14px;
+}
+body.cx #gaming .gt-rule {
+  width: 64px;
+  height: 3px;
+  background: var(--red);
+  margin: 0 auto;
+  border: 0;
+}
+
+/* soviet 01 章幕后系列（视频后）：小标题样式对齐 body.cx .sub-head；
+   间隔节奏：视频→标题 100px，标题→首图 30px，图块之间 76px（与其他子页一致） */
+body.sov #jokes .sub-head {
+  margin: 100px 0 18px;
+  padding-left: 16px;
+  border-left: 4px solid var(--red);
+  font-size: clamp(21px, 2.2vw, 28px);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+}
+body.sov #jokes .bts-trio { margin-top: 76px; }
+body.sov #jokes .bts-eagle { margin-top: 76px; }
+body.sov #jokes .sub-head + .jokes-card { margin-top: 30px; }
