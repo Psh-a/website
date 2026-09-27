@@ -116,12 +116,12 @@
 .media img { width: 100%; height: auto; display: block; }
 .media-caption {
   padding: 12px 16px;
-  font-size: 13.5px;
-  line-height: 1.55;
+  font-size: 18px;
+  line-height: 1.6;
   color: var(--muted);
   border-top: 1px solid var(--line-blue);
-  background: var(--tint);
-  text-align: left;
+  background: var(--white);
+  text-align: justify;
 }
 .media-wide { margin-top: 30px; }
 
@@ -294,7 +294,7 @@ body.sov .section[id] { scroll-margin-top: 88px; }
 body.cx .section-num { font-size: clamp(46px, 5.2vw, 76px); }
 body.cx .section-title { font-size: clamp(29px, 3.7vw, 49px); }
 body.cx .media-cap { font-size: 13.5px; }
-body.cx .media-caption { font-size: 14.5px; }
+body.cx .media-caption { font-size: 18px; }
 body.cx .award-label { font-size: 13.5px; }
 body.cx .btn { font-size: 16px; }
 
@@ -452,6 +452,27 @@ body.cx .media-side .media-caption {
 body.cx #ancient-trees .trio-grid .media-caption strong {
   color: var(--navy-deep);
   font-weight: 800;
+}
+
+/* awakening 01 章 banyan 左图右文改为卡片：整块包边框圆角白底，图贴左缘满高 cover，题注右栏内边距+垂直居中 */
+body.cx #ancient-trees .media-side {
+  border: 1px solid var(--line-blue);
+  border-radius: 10px;
+  background: var(--white);
+  overflow: hidden;
+  gap: 0;
+}
+body.cx #ancient-trees .media-side > img {
+  border: 0;
+  border-radius: 0;
+  height: 100%;
+  object-fit: cover;
+}
+body.cx #ancient-trees .media-side .media-caption {
+  padding: 18px 24px;
+}
+@media (max-width: 980px) {
+  body.cx #ancient-trees .media-side > img { height: auto; }
 }
 
 @media (max-width: 980px) {
@@ -658,15 +679,23 @@ body.cx #service-hearts .swh-top .media img {
 
 body.cx #service-hearts .swh-split {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.95fr 1.05fr;
   gap: 24px;
   align-items: start;
   margin-top: 76px;
+  border: 1px solid var(--line-blue);
+  border-radius: 10px;
+  background: var(--white);
+  padding: 10px;
 }
 
 body.cx #service-hearts .swh-split .media img {
   width: 100%;
   height: auto;
+}
+/* 卡片内图块清掉全局 .media 的 30px 上边距，只留 10px 内距 */
+body.cx #service-hearts .swh-split .media {
+  margin-top: 0;
 }
 
 body.cx #service-hearts .swh-top .media-caption {
@@ -775,4 +804,104 @@ body.cx #fundraising ~ .trio-grid .media-caption {
 body.cx #fundraising ~ .trio-grid .media img {
   aspect-ratio: 1034 / 1258;
   object-fit: cover;
+}
+
+/* the-awakening 灰白交替色带：intro 文字段保持灰底（body 纸色）不动，01/03/05 白底，
+   02/04 维持 .section-alt 的 #eef2f9；按 ID 作用域，仅本页生效 */
+body.cx #ancient-trees,
+body.cx #service-hearts,
+body.cx #reflection { background: var(--white); }
+
+/* the-awakening 段间隔统一节奏（配套灰白交替色带）：上一章内容→分隔线 220px、分隔线→下一章标题 50px；
+   各章 .section 默认 50/220 本就如此，intro 原为 50/0 且无分隔线，补齐同样节奏 */
+body.cx #intro { padding: 50px 0 220px; border-bottom: 1px solid var(--line-blue); }
+
+/* the-awakening intro 左图右文：图竖屏 3:4 裁切、列宽收窄（0.62fr/1fr、34px 列距、图框样式同 .media-side）；
+   文字相对图片垂直居中（align-items:center），段落沿用 .section p 的两端对齐 */
+body.cx #intro .intro-split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr);
+  gap: 34px;
+  align-items: center;
+}
+body.cx #intro .intro-photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  height: auto;
+  display: block;
+  border: 1px solid var(--line-blue);
+  border-radius: 10px;
+  background: var(--white);
+}
+body.cx #intro .intro-text p {
+  text-align: justify;
+  hyphens: auto;
+  margin-bottom: 14px;
+  font-size: 18.5px;
+}
+/* 参考排版：首段加粗开场句（同 "Hi, I'm John Doe" 层级，保持左对齐），正文两端对齐，末段灰色小字收尾 */
+body.cx #intro .intro-text p:first-child {
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--navy-deep);
+  text-align: left;
+}
+body.cx #intro .intro-text p:last-child {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 16.5px;
+}
+
+@media (max-width: 980px) {
+  body.cx #intro .intro-split { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+}
+
+/* soviet 01 章 jokes 卡片：仿 awakening 03 章 Reading Buddies 卡（左大图满高 + 右栏图上文下），
+   无图注；第二段文字(.jokes-note)在右栏图片下方、两端对齐；第三段话在卡片上方（见 HTML 顺序） */
+body.sov #jokes .jokes-card {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr);
+  gap: 24px;
+  margin-top: 50px;
+  border: 1px solid var(--line-blue);
+  border-radius: 10px;
+  background: var(--white);
+  padding: 10px;
+}
+body.sov #jokes .jokes-card .media {
+  margin: 0;
+  border: 0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+body.sov #jokes .jokes-card .media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+body.sov #jokes .jokes-photo-left {
+  height: 100%;
+}
+body.sov #jokes .jokes-photo-left img {
+  height: 100%;
+  object-fit: cover;
+}
+body.sov #jokes .jokes-right {
+  display: flex;
+  flex-direction: column;
+}
+body.sov #jokes .jokes-note {
+  margin: auto 4px;
+  text-align: justify;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+@media (max-width: 860px) {
+  body.sov #jokes .jokes-card { grid-template-columns: minmax(0, 1fr); }
+  body.sov #jokes .jokes-photo-left img { height: auto; }
+  body.sov #jokes .jokes-note { margin: 14px 4px 4px; text-align: left; }
 }
