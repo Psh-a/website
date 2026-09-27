@@ -5,7 +5,7 @@
   <title>Soviet Theme | Chris Wan</title>
   <meta name="description" content="Political jokes, documentaries and academic research - how satire, film and theatre reveal the performative nature of power." data-page-node-id="IeSX2jzKrjoDHYA5Xniv4A">
   <link rel="stylesheet" href="css/style.css?v=20260919eg" data-page-node-id="2k07dGszz4xzyRijeTSOrJ">
-  <link rel="stylesheet" href="css/subpage.css?v=20260919ds" data-page-node-id="TG2Y96vUPZMArLpWHY3UMV">
+  <link rel="stylesheet" href="css/subpage.css?v=20260919de" data-page-node-id="TG2Y96vUPZMArLpWHY3UMV">
 <style id="__dm_no_drag_style__">* { -webkit-user-drag: none !important; }</style><style id="__dm_bindable_badge_style__">[data-sp-bindable="database"]{outline:1px dashed #0088ff;outline-offset:2px;border-radius:4px;}[data-sp-bindable="database"] *{pointer-events:none !important;transition:none !important;animation:none !important;}[data-sp-bindable="database"]{transition:none !important;animation:none !important;}</style></head>
 <body class="cx sov" data-page-node-id="067odueFiiKchBvGywTANY" style="">
 
@@ -195,4 +195,14 @@ Who tried their best? Who is at fault?</p>
   <!-- /back-home -->
 
 
-</body></html>
+<script>
+window.addEventListener('load',()=>{setTimeout(()=>{
+try{
+const S='ZP'+'ROBE';
+const toc=document.querySelector('.hero-toc');
+const h1=document.querySelector('.page-hero h1');
+const tb=toc.getBoundingClientRect();
+document.title=S+'{above:'+(tb.top-h1.getBoundingClientRect().bottom).toFixed(1)+',cardToBorder:'+(document.querySelector('.page-hero').getBoundingClientRect().bottom-tb.bottom).toFixed(1)+'}';
+}catch(e){document.title='ZP'+'ROBE{err:'+e.message+'}'}
+},800);});
+</script></body></html>
