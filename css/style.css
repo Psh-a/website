@@ -1,4 +1,3 @@
-
 :root {
   --navy: #1e407c;
   --navy-deep: #001e44;
@@ -53,8 +52,8 @@ a { color: inherit; text-decoration: none; }
   font-weight: 700;
   font-size: 19px;
   letter-spacing: 0.02em;
-  /* 右移 148px：brand 文字中心与 hero 照片中心对齐（宽屏恒成立） */
-  margin-left: 148px;
+
+  margin-left: 246px;
 }
 
 .brand span { color: var(--red-soft); }
@@ -62,8 +61,8 @@ a { color: inherit; text-decoration: none; }
 .site-nav {
   display: flex;
   gap: 8px;
-  /* 右移 70px：About Me 文字与 hero 文字左缘对齐（≥1536 宽恒成立） */
-  margin-right: -70px;
+
+  margin-right: -86px;
 }
 
 .site-nav a {
@@ -84,7 +83,7 @@ a { color: inherit; text-decoration: none; }
   --hero-gap: 76px;
   background: var(--white);
   color: var(--ink);
-  padding: 80px 0 72px;
+  padding: 0;
   position: relative;
   overflow: hidden;
 }
@@ -114,15 +113,13 @@ a { color: inherit; text-decoration: none; }
 }
 
 .hero-photo {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  /* 宽度由图片原始比例决定（源图已左右各裁 50px → 1100×795），上下不裁切、完整显示 */
+  position: relative;
+
+  width: 114%;
+  margin-left: max(-30px, min(0px, (1420px - 100vw) / 2));
+
   aspect-ratio: 1100 / 795;
-  width: auto;
-  left: calc(max(-16px, calc((100% - var(--hero-box)) / 2 - 16px)) - 130px);
-  max-width: none;
-  min-height: 0;
+  align-self: center;
   z-index: 0;
   pointer-events: none;
 }
@@ -179,8 +176,8 @@ a { color: inherit; text-decoration: none; }
 }
 
 .hero-text .text-box {
-  /* 目标宽 600px；窄屏按「视口一半 - 58px」收缩，右缘保持距屏 24px，防止切字 */
-  width: min(600px, calc(50vw - 58px));
+
+  width: min(582px, calc(50vw - 58px));
   margin-top: 24px;
   margin-left: 0;
   margin-right: max(-70px, calc((min(100vw, var(--hero-box)) - 100vw) / 2 - 24px));
@@ -244,7 +241,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .project-row + .project-row {
-  margin-top: 202px; /* 上一卡底→红线 100 + 红线 2 + 红线→下一卡 100 */
+  margin-top: 202px;
 }
 
 .project-row + .project-row::before {
@@ -264,7 +261,7 @@ a { color: inherit; text-decoration: none; }
   content: "";
   position: absolute;
   z-index: -1;
-  top: -102px;   /* 色带上下边界均贴红线（100px 间隔 + 线高 2） */
+  top: -102px;
   bottom: -102px;
   left: 50%;
   transform: translateX(-50%);
@@ -760,6 +757,5 @@ body.home .see-more:focus-visible {
   .footer-right { align-items: center; }
 }
 
-/* index 子项目卡内容整体缩小到 90%：图片列内缩至 90% 居中、文字 zoom 0.9；卡片盒与子项目分隔线保持通栏不变 */
 body.home .row-subs .sub-item .sub-media { width: 90%; justify-self: center; }
 body.home .row-subs .sub-item .sub-body { zoom: 0.9; }

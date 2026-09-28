@@ -9,7 +9,6 @@
     : Array.from(document.querySelectorAll("#part1, #part2, #part3, #part4"));
 
   const topZone = document.querySelector(".hero, .page-hero");
-  // index 独有：hero 下的全宽分层色带（.hero-fade），导轨需从色带之下的白色区域开始
   const topFade = document.querySelector(".hero-fade");
   const footer = document.querySelector(".site-footer");
   let ticking = false;

@@ -1,4 +1,3 @@
-
 .page-hero h1 em { font-style: normal; color: var(--red); }
 
 .video-frame {
@@ -125,8 +124,6 @@
 }
 .media-wide { margin-top: 30px; }
 
-/* defying 03 章：ground-break（横 970×545）与轮椅竖图（810×1080）并排，
-   列宽按长宽比 1.78:0.75 配平，两图高度自然一致、无需裁切 */
 body.cx #ant-hole .dg-crash-duo {
   grid-template-columns: minmax(0, 1.78fr) minmax(0, 0.75fr);
   margin-top: 30px;
@@ -461,7 +458,6 @@ body.cx #ancient-trees .trio-grid .media-caption strong {
   font-weight: 800;
 }
 
-/* awakening 01 章 banyan 左图右文改为卡片：整块包边框圆角白底，图贴左缘满高 cover，题注右栏内边距+垂直居中 */
 body.cx #ancient-trees .media-side {
   border: 1px solid var(--line-blue);
   border-radius: 10px;
@@ -700,7 +696,7 @@ body.cx #service-hearts .swh-split .media img {
   width: 100%;
   height: auto;
 }
-/* 卡片内图块清掉全局 .media 的 30px 上边距，只留 10px 内距 */
+
 body.cx #service-hearts .swh-split .media {
   margin-top: 0;
 }
@@ -727,7 +723,6 @@ body.cx #service-hearts .swh-split-cap strong {
   body.cx #service-hearts .swh-split-cap { margin-top: 16px; text-align: left; }
 }
 
-/* 01 章三张树照的图注卡等高：figure 拉伸到同一行高，题注撑满剩余空间 */
 body.cx #ancient-trees .trio-grid { align-items: stretch; }
 body.cx #ancient-trees .trio-grid .media {
   display: flex;
@@ -735,7 +730,6 @@ body.cx #ancient-trees .trio-grid .media {
 }
 body.cx #ancient-trees .trio-grid .media-caption { flex: 1; }
 
-/* 04 章服务之心两卡题注等高：卡片拉伸同高，题注撑满剩余空间 */
 body.cx #service-hearts .swh-top { align-items: stretch; }
 body.cx #service-hearts .swh-top .media {
   display: flex;
@@ -743,24 +737,20 @@ body.cx #service-hearts .swh-top .media {
 }
 body.cx #service-hearts .swh-top .media-caption { flex: 1; }
 
-/* 05 章 NextGen 两图统一比例（以右图 1702x1276 为准），裁切对齐 */
 body.cx #nextgen .media-duo img {
   aspect-ratio: 1702 / 1276;
   object-fit: cover;
   height: auto;
 }
 
-/* 图片后紧跟的段落补间距：.media 无下边距 + 全局 reset 清零段落上边距，避免文字贴图 */
 body.cx .media + p {
   margin-top: 34px;
 }
 
-/* award-panel 无下边距导致面板后文字贴卡，补 34px */
 .award-panel {
   margin-bottom: 34px;
 }
 
-/* #drama 两卡：左图改用与右图(证书)一致的比例裁切，两图同宽居中 → 文字起点对齐；卡片拉伸等高（允许留白） */
 #drama .rec-set { align-items: stretch; }
 #drama .rec-panel { display: flex; flex-direction: column; }
 #drama .rec-body { flex: 1; }
@@ -774,29 +764,23 @@ body.cx .media + p {
   margin: 0 auto 24px;
 }
 
-/* page-hero 内容整体下移 50px（顶内距 88→138）；目录卡上间隔 140px；hero 下内距 170px + 首节上内距 50px */
 body.cx .page-hero { padding-top: 138px; }
 body.cx .hero-toc { margin-top: 140px; }
 body.cx .page-hero { padding-bottom: 170px; }
 body.cx main > .section:first-child { padding-top: 50px; }
 
-/* hero 内容整体放大 10%：kicker 14→15、h1 clamp 上限 72→79、目录卡各值再×1.1（间距不变） */
 body.cx .page-hero .kicker { font-size: 15px; letter-spacing: 0.24em; }
 body.cx .page-hero h1 { font-size: clamp(53px, 7.7vw, 79px); margin-top: 13px; }
 body.cx .hero-toc { max-width: 1012px; border-radius: 15px; }
 body.cx .hero-toc a { gap: 22px; padding: 21px 32px; font-size: 23px; }
 body.cx .hero-toc .toc-num { font-size: 17px; }
 
-/* 图块与图块纵向间距统一 ~78px（学习参考图：照片块之间大留白）；仅限版心直接子块，网格内部图片不受影响；文字与图块之间距离不变 */
 body.cx .cx-wrap > :is(.media, .media-side, .media-duo, .trio-grid, .rec-set, .rec-panel, .video-embed, .video-frame, .award-panel) +
 :is(.media, .media-side, .media-duo, .trio-grid, .rec-set, .rec-panel, .video-embed, .video-frame, .award-panel) { margin-top: 76px; }
 
-/* 正文段落与图块之间统一 50px（文→图、图→文）；图块之间仍为 76px，标题→图块不变 */
 body.cx .cx-wrap > p + :is(.media, .media-side, .media-duo, .trio-grid, .rec-set, .rec-panel, .video-embed, .video-frame, .award-panel, .stats-row) { margin-top: 50px; }
 body.cx .cx-wrap > :is(.media, .media-side, .media-duo, .trio-grid, .rec-set, .rec-panel, .video-embed, .video-frame, .award-panel, .stats-row) + p { margin-top: 50px; }
 
-/* 02 章 fundraising 三图题注卡等高、文字垂直居中：卡片拉伸同高，题注撑满剩余空间并居中
-   注意：#fundraising 是 h3，.trio-grid 是其兄弟节点，必须用 ~ 兄弟选择器 */
 body.cx #fundraising ~ .trio-grid { align-items: stretch; }
 body.cx #fundraising ~ .trio-grid .media {
   display: flex;
@@ -807,24 +791,18 @@ body.cx #fundraising ~ .trio-grid .media-caption {
   display: flex;
   align-items: center;
 }
-/* 三张图固有比例略不同（946x1156 / 1034x1258 / 1080x1308），统一为中间比例后题注卡才严格等高 */
+
 body.cx #fundraising ~ .trio-grid .media img {
   aspect-ratio: 1034 / 1258;
   object-fit: cover;
 }
 
-/* the-awakening 灰白交替色带：intro 文字段保持灰底（body 纸色）不动，01/03/05 白底，
-   02/04 维持 .section-alt 的 #eef2f9；按 ID 作用域，仅本页生效 */
 body.cx #ancient-trees,
 body.cx #service-hearts,
 body.cx #reflection { background: var(--white); }
 
-/* the-awakening 段间隔统一节奏（配套灰白交替色带）：上一章内容→分隔线 220px、分隔线→下一章标题 50px；
-   各章 .section 默认 50/220 本就如此，intro 原为 50/0 且无分隔线，补齐同样节奏 */
 body.cx #intro { padding: 50px 0 220px; border-bottom: 1px solid var(--line-blue); }
 
-/* the-awakening intro 左图右文：图竖屏 3:4 裁切、列宽收窄（0.62fr/1fr、34px 列距、图框样式同 .media-side）；
-   文字相对图片垂直居中（align-items:center），段落沿用 .section p 的两端对齐 */
 body.cx #intro .intro-split {
   display: grid;
   grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr);
@@ -847,7 +825,7 @@ body.cx #intro .intro-text p {
   margin-bottom: 14px;
   font-size: 18.5px;
 }
-/* 参考排版：首段加粗开场句（同 "Hi, I'm John Doe" 层级，保持左对齐），正文两端对齐，末段灰色小字收尾 */
+
 body.cx #intro .intro-text p:first-child {
   font-weight: 700;
   font-size: 19px;
@@ -865,8 +843,6 @@ body.cx #intro .intro-text p:last-child {
   body.cx #intro .intro-split { grid-template-columns: minmax(0, 1fr); gap: 22px; }
 }
 
-/* soviet 01 章 jokes 卡片：仿 awakening 03 章 Reading Buddies 卡（左大图满高 + 右栏图上文下），
-   无图注；第二段文字(.jokes-note)在右栏图片下方、两端对齐；第三段话在卡片上方（见 HTML 顺序） */
 body.sov #jokes .jokes-card {
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr);
@@ -913,7 +889,6 @@ body.sov #jokes .jokes-note {
   body.sov #jokes .jokes-note { margin: 14px 4px 4px; text-align: left; }
 }
 
-/* creative 01 章 gaming：第三图（入口截图）上方游戏名标题条（方案 A）：眉标+大标题+红色短线，居中 */
 body.cx #gaming .game-title-block {
   text-align: center;
   margin-top: 50px;
@@ -941,8 +916,6 @@ body.cx #gaming .gt-rule {
   border: 0;
 }
 
-/* soviet 01 章幕后系列（视频后）：小标题样式对齐 body.cx .sub-head；
-   间隔节奏：视频→标题 100px，标题→首图 30px，图块之间 76px（与其他子页一致） */
 body.sov #jokes .sub-head {
   margin: 100px 0 18px;
   padding-left: 16px;
